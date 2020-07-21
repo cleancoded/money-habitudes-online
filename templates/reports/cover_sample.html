@@ -1,0 +1,183 @@
+<html>
+<head>
+<style>
+ @page {
+    size: 215.9mm 279.4mm;
+    margin: 0;
+    padding: 15mm;
+ }
+
+ body {
+     font-family: sans-serif;
+     font-size: 12pt;
+     margin: 0;
+     padding: 0;
+ }
+
+ .page-fixed {
+     margin: 0;
+     padding: 0;
+     width: 185.9mm;
+     height: 249.4mm;
+     page-break-after: always;
+ }
+
+ .page-fluid {
+     page-break-after: always;
+ }
+
+ .firstpage {
+     text-align: center;
+ }
+
+ .more-padding {
+     margin-top: 10mm;
+     padding-top: 0;
+ }
+
+ .less-padding {
+     margin: 1mm 0;
+     padding: 0;
+ }
+
+ .personal-report-for {
+     color: #d22027;
+     font-size: 16pt;
+     font-weight: bold;
+ }
+
+ .firstpage_footer {
+     position: absolute;
+     margin-top: 9.8cm;
+ }
+
+ .tiny {
+     font-size: 8pt;
+     text-align: left;
+     margin: 0 .30cm;
+ }
+
+ .p2-header {
+     font-size: 12pt;
+     font-weight: 800;
+     color: #d22027;
+     margin-top: 1cm;
+ }
+
+ .p2-content {
+     font-size: 10pt;
+     padding-left: 1cm;
+     list-style-position: inside;
+ }
+
+ .cardstack-container {
+     position: absolute;
+     left: 7cm;
+     top: 2cm;
+     width: 380px;
+ }
+
+ .cardstack {
+     background-color: #f2f3f5;
+     border: 1px solid #d9d8d8;
+     width: 380px;
+     height: 50px;
+     margin-bottom: 1mm;
+     position: relative;
+ }
+
+ .habitude-scale {
+     position: absolute;
+     width: 607px;
+     height: 360px;
+     top: 14.5cm;
+     left: 1cm;
+ }
+
+ .habitude-table {
+     position: absolute;
+     top: 0;
+     left: 0;
+ }
+
+ .habitude-row {
+     top: 40px;
+     left: -14px;
+     position: relative;
+     height: 43px;
+     width: 607px;
+     margin: 0;
+     padding: 0;
+ }
+
+ .habitude-dot {
+     position: relative;
+     width: 10px;
+     height: 10px;
+     top: 5px;
+     margin-left: 38.3px;
+ }
+
+ .category-title {
+     font-size: 3em;
+     letter-spacing: 0.5em;
+     text-transform: uppercase;
+     margin: 0;
+     padding: 0;
+ }
+
+ .cat-section {
+     margin-top:10mm;
+     page-break-inside: avoid;
+ }
+
+ .dontbreak {
+     page-break-inside: avoid;
+ }
+
+ .cat-section div {
+     margin-left: 170px;
+ }
+
+ .cat-section img {
+     position: absolute;
+     width: 141px;
+     height: 65px;
+ }
+
+</style>
+</head>
+<body>
+<div class="firstpage page-fixed">
+    <img class="more-padding" src="static/img/logo-onwhite.png" />
+    <p class="more-padding">Money Habitudes is a fun, easy way<br>
+        to understand your money personality.<br>
+        It helps you think about money in new ways<br>
+        and talk about your finances.
+    </p>
+    <h1 class="more-padding personal-report-for">{% if account.name != '' %}PERSONAL REPORT FOR:{% else %}&nbsp;{% endif %}</h1>
+    <p class="more-padding">{% if account.name != '' %}Jane Doe{% else %}&nbsp;{% endif %}</p>
+    <div class="firstpage_footer">
+        <h4 class="less-padding subheader">CREATED BY:</h4>
+        <p class="less-padding"><strong>LifeWise Strategies, LLP</strong></p>
+        <p class="less-padding">406-361-8012 &bull; info@lifewise.us &bull; www.MoneyHabitudes.com</p>
+        <div class="tiny">
+            <p>&copy; 2016. All content is copyright of LifeWise Strategies, LLP.</p>
+            <p>All Rights Reserved. No part of this report, computer program, or website may be reproduced or utilized in any form or by any means, electronic or mechanical, including photocopying, recording, or by any information storage and retrieval system, without permission in writing from the publisher.</p>
+            <p>Money Habitudes&reg; cards were created by Syble Solomon. The Money Habitudes online system was created by Syble Solomon and Lee Gimpel.</p>
+            <p>Money Habitudes&reg; is a registered trademark.</p>
+        </div>
+    </div>
+    {% if account.branding %}
+    <div style="margin:10px auto;display:block;height:168px;width:576px;"><img src="{{account.branding.cover_image_url}}"></div>
+    <div style="overflow:hidden;margin:0 auto;display:block;height:1.5in;width:6in;">
+        <p>
+            {% for line in account.branding.load_cover_text %}
+            {{line}}<br>
+            {% endfor %}
+        </p>
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>

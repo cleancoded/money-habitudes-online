@@ -1,0 +1,51 @@
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title">{{ web.d.settings_codes.title }}</h3>
+    <p>{{ codes_available }}</p>
+</div>
+<div class="modal-body" id="modal-body">
+    <uib-accordion ng-if="me.available_games">
+        <div is-open="email_open" uib-accordion-group class="panel-default">
+            <uib-accordion-heading>
+                {{ t.web.d.settings_codes.email_title }} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': email_open, 'glyphicon-chevron-right': !email_open}"></i>
+            </uib-accordion-heading>
+            <h3>{{ t.web.d.settings_codes.email_prompt }}</h3>
+            <textarea class="form-control" rows="3" placeholder="{{ t.web.d.settings_codes.email_placeholder }}" ng-model="raw_emails" ng-change="extract_emails(raw_emails);"></textarea>
+            <div>
+                <h3>{{ t.web.d.settings_codes.email_send }}</h3>
+                <ul ng-show="processed_emails.length">
+                    <li ng-repeat="email in processed_emails">{{ email }}</li>
+                </ul>
+                <ul ng-hide="processed_emails.length">
+                    <li>{{ t.web.d.settings_codes.email_notfound }}</li>
+                </ul>
+                <div ng-show="processed_emails.length > me.available_games" class="alert alert-danger" role="alert">{{ t.web.d.settings_codes.not_available }}</div>
+                <button ng-disabled="!processed_emails.length || processed_emails.length > me.available_games" ng-click="email_codes()" class="btn btn-primary">{{ t.web.d.settings_codes.send }}<span ng-show="processed_emails.length"> {{ processed_emails.length }}</span></button>
+            </div>
+        </div>
+        <div ng-if="me.group_codes" is-open="play_open" uib-accordion-group class="panel-default" heading="Create a group code">
+            <uib-accordion-heading>
+                {{ t.web.d.settings_codes.group_title }} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': codes_open, 'glyphicon-chevron-right': !codes_open}"></i>
+            </uib-accordion-heading>
+            <p>
+                {{ t.web.d.settings_codes.group_desc }}
+            </p>
+            <form ng-submit="group_codes(code_quantity, code_name);">
+                <div class="form-group">
+                    <label>{{ t.web.d.settings_codes.group_label }}</label>
+                    <input ng-model="code_name" type="text" class="form-control" placeholder="{{ t.web.d.settings_codes.group_label }}">
+                </div>
+                <div class="form-group">
+                    <label>{{ t.web.d.settings_codes.group_size }}</label>
+                    <input ng-model="code_quantity" type="number" min="1" max="{{ me.available_games }}" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">{{ t.web.d.settings_codes.group_create }}</button>
+        </div>
+        <div is-open="codes_open" uib-accordion-group class="panel-default" heading="{{ t.web.d.settings_codes.start_title }}">
+            <uib-accordion-heading>
+                {{ t.web.d.settings_codes.start_title }} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': codes_open, 'glyphicon-chevron-right': !codes_open}"></i>
+            </uib-accordion-heading>
+            <button ng-click="play_game();" class="btn">{{ t.web.d.settings_codes.start_button }}</button>
+        </div>
+    </uib-accordion>
+    <p ng-hide="me.available_games">{{ t.web.d.settings_codes.none_available }}</p>
+</div>

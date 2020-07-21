@@ -1,0 +1,52 @@
+<mh-base>
+<div id="content" class="bg-lblue-pattern">
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-md-push-6 col-lg-5 col-lg-push-7" data-mh="row">
+        <div class="form-box-wrap">
+          <div class="form-box">
+            <div class="heading">{{ t.web.s.login.h }}</div>
+            <div class="content">
+              <p class="msg">{{ t.web.s.login.p }}</p>
+              <form ng-submit="login(login_params.email, login_params.password);">
+                <div class="form-group">
+                  <div class="input-group"> <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    <input ng-model="login_params.email" type="email" class="form-control" id="inlineFormInputGroup" placeholder="{{ t.web.s.login.email.placeholder }}" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group"><span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input id="password" ng-model="login_params.password" type="{{show_password ? 'text': 'password'}}" class="form-control" placeholder="{{ t.web.s.login.password.placeholder }}" required>
+                    <span class="input-group-btn">
+                    <button id="password-toggle" ng-click="show_password = !show_password;" class="btn toggle-password fa fa-fw" ng-class="{'fa-eye': !show_password, 'fa-eye-slash': show_password}" type="button"></button>
+                    </span> </div>
+                </div>
+                <p><a ui-sref="password"><small>{{ t.web.s.login.password.forgot }}</small></a></p>
+                <div class="form-group">
+                  <button class="btn btn-block" type="submit">{{ t.web.s.login.action }}</button>
+                </div>
+              </form>
+              <div class="form-group">
+                  <a ng-hide="next === 'dashboard'" ui-sref="signup({next: next, nextParams: nextParams, branding: branding})" class="btn-border btn-block">{{ t.web.s.login.signup }}</a>
+                  <a ng-show="next === 'dashboard'" ui-sref="start({goto: 'pricing'})" class="btn-border btn-block">{{ t.web.s.login.signup }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="signup-login-txt-col col-sm-12 col-md-6 col-md-pull-6 col-lg-7 col-lg-pull-5" data-mh="row">
+        <div class="signup-login-txt-col-content">
+          <h2 class="section-heading hidden-xs hidden-sm">{{ t.web.s.login.slogan }}</h2>
+          <div ng-show="branding" class="branding-area">
+            <div ng-show="branding.cover_image_url && branding.cover_text.length > 0" class="pic"><img ng-src="{{ branding.cover_image_url }}"></div>
+                <div ng-show="branding.cover_image_url && branding.cover_text.length === 0"><center><img ng-src="{{ branding.cover_image_url }}"></center></div>
+            <div class="txt" ng-show="branding.cover_text.length > 0">
+                <span ng-repeat="line in branding.cover_text">{{ line }}<br></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</mh-base>

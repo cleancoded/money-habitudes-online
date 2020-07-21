@@ -1,0 +1,13 @@
+{% extends 'emails/base_email.html' %}
+
+{% block lead %}
+Welcome to Money Habitudes!
+{% endblock %}
+
+{% block content %}
+<p>Click the link below to confirm your email address.</p>
+{% endblock %}
+
+{% block action %}
+<p><a href="{{ data.confirm_url }}">Confirm account</a></p>
+{% endblock %}

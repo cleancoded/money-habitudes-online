@@ -1,0 +1,115 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div class="column row">
+    <h1>Accounts</h1>
+</div>
+<div class="column row">
+    <div class="well">
+        <p><strong>Filter</strong></p>
+        <form class="form" method="get" action="?page=1&order_by={{ order_by }}">
+            <div class="form-group">
+                <input type="text" class="form-control" name="q" value="{{ search_text }}">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+        </form>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    {% if order_by == 'email' %}
+                    <a href="?order_by=-email&q={{ search_text }}">
+                    {% else %}
+                    <a href="?order_by=email&q={{ search_text }}">
+                    {% endif %}
+                        {% if order_by == 'email' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+                        {% elif order_by == '-email' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+                        {% endif %}
+                        Email
+                    </a>
+                </th>
+                <th>
+                    {% if order_by == 'name' %}
+                    <a href="?order_by=-name&q={{ search_text }}">
+                    {% else %}
+                    <a href="?order_by=name&q={{ search_text }}">
+                    {% endif %}
+                        {% if order_by == 'name' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+                        {% elif order_by == '-name' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+                        {% endif %}
+                        Name
+                    </a>
+                <th>Used games</th>
+                <th>Total games</th>
+                <th>Group codes</th>
+                <th>Admin reports</th>
+                <th>Report branding</th>
+                <th>Site branding</th>
+                <th>Player pays</th>
+                <th>Subscription</th>
+                <th>Period end date</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for account in page.object_list %}
+            <tr onclick="window.location.assign('/admin/accounts/{{account.id}}/')">
+                <td>{{ account.email }}</td>
+                <td>{{ account.name }}</td>
+                <td>{{ account.usage_stats.0 }}</td>
+                <td>{{ account.usage_stats.1 }}</td>
+                <td>{{ account.get_capabilities.group_codes }}</td>
+                <td>{{ account.get_capabilities.admin_reports }}</td>
+                <td>{{ account.get_capabilities.report_branding }}</td>
+                <td>{{ account.get_capabilities.site_branding }}</td>
+                <td>{{ account.player_pays }}</td>
+                {% if account.get_capabilities.subscription %}
+                <td>{{ account.get_capabilities.subscription.stripe_plan_id }}</td>
+                <td>{{ account.get_capabilities.subscription.active_until | date }}</td>
+                <td>{{ account.get_capabilities.subscription.active }}</td>
+                {% else %}
+                <td>None</td>
+                <td>N/A</td>
+                <td>N/A</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation"><center>
+        <ul class="pagination">
+            {% if page.has_previous %}
+            <li>
+                <a href="?page=1&order_by={{ order_by }}&q={{ search_text }}" aria-label="First">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li>
+                <a href="?page={{ page.previous_page_number }}&order_by={{ order_by }}&q={{ search_text }}" aria-label="Previous">
+                    <span aria-hidden="true"><</span>
+                </a>
+            </li>
+            {% endif %}
+            <li><a>{{ page.number }} / {{ page.paginator.num_pages }}</a></li>
+            {% if page.has_next %}
+            <li>
+                <a href="?page={{ page.next_page_number }}&order_by={{ order_by }}&q={{ search_text }}" aria-label="Next">
+                    <span aria-hidden="true">></span>
+                </a>
+            </li>
+            <li>
+                <a href="?page={{ page.paginator.num_pages }}&order_by={{ order_by }}&q={{ search_text }}" aria-label="Last">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    </center>
+</div>
+{% endblock %}

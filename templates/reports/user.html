@@ -1,0 +1,93 @@
+<html>
+<head>
+<style>
+ @font-face {
+     font-family: 'PT Sans';
+	src: url('static/font/PTS55F_W.eot'); 
+	  src: local('PT Sans'), url('static/font/PTS55F_W.eot?#iefix') format('embedded-opentype'), url('static/font/PTS55F_W.woff') format('woff'),url('static/font/PTS55F_W.ttf') format('truetype'), url('static/font/PTS55F_W.svg#PTSans-Regular') format('svg');
+ }
+ @page {
+     size: 21.59cm 27.94cm;
+     margin: 1.27cm;
+     padding: 0;
+     margin-bottom:24mm;
+     padding-bottom: 0;
+     @bottom-right {
+         font-size: 12px;
+         color: #555555;
+         font-family: 'PT Sans';
+         z-index: -1;
+         content: {{ page_string | safe }};
+     }
+ }
+
+ @media print {
+     footer {
+         position: fixed;
+         bottom: -17.5mm;
+         width: 100%;
+         z-index:-1
+     }
+
+     p {
+         page-break-inside: avoid;
+     }
+ }
+
+ body {
+     margin: 0;
+     padding: 0;
+     font-family: 'PT Sans';
+     font-size: 15px;
+ }
+
+ .page-container {
+     page-break-before:always;
+ }
+
+ p {
+     color: #555555;
+ }
+
+ li {
+     color: #555555;
+ }
+
+ .color-ca {
+     color: #e1b901;
+ }
+ .color-gi {
+     color: #4ea812;
+ }
+ .color-pl {
+     color: #234092;
+ }
+ .color-se {
+     color: #697683;
+ }
+ .color-sp {
+     color: #ee071f;
+ }
+ .color-st {
+     color: #a13a93;
+ }
+</style>
+<body>
+    {% if show_cover %}
+    {% include 'reports/user/cover.html' %}
+    {% endif %}
+    {% if show_dynamic %}
+    {% include 'reports/user/dynamic.html' %}
+    {% endif %}
+    {% if show_next_steps %}
+    {% include 'reports/user/next-steps.html' %}
+    {% endif %}
+    <footer>
+        <div style="width:250px;border:1px solid black;"></div>
+        <div style="border-top:1px solid black;width:100%">
+            <p style="color:grey;font-size:12px;">{{ t.report.footer_disclaimer | safe }}</p>
+        </div>
+    </footer>
+</body>
+</head>
+</html>

@@ -1,0 +1,82 @@
+<header ng-hide="me.logged_in">
+  <div class="top-header visible-sm visible-xs">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-8 no-paddright">
+          <div uib-dropdown class="dropdown show">
+            <p><a uib-dropdown-toggle class="dropdown-toggle" href aria-haspopup="true" aria-expanded="false">{{ language_name }}<b class="caret"></b></a></p>
+              <ul uib-dropdown-menu class="dropdown-menu">
+                <li ng-repeat="language in me.language_choices"><a href ng-click="change_language(language[0]);">{{ language[1] }}</a></li>
+              </ul>
+          </div>
+          <p><a ui-sref="start({goto: 'contact-wrap'})">{{ t.web.d.navbar.contact_us }}</a></p>
+        </div>
+        <div class="col-xs-4 pull-right text-right  no-paddleft" ng-hide="mid_signup">
+            <a class="login-btn" ui-sref="login">{{ t.web.d.navbar.login }}</a>
+            <a ng-hide="on_start" class="signup-btn" ui-sref="start({goto: 'pricing'})">{{ t.web.d.navbar.signup }}</a>
+            <a ng-show="on_start" class="signup-btn" href ng-click="scrollTo('#pricing')">{{ t.web.d.navbar.signup }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-xs-5"><a ui-sref="start" class="logo"><img src="/static/design/images/logo.png"></a></div>
+        <div class="col-sm-9 col-xs-7">
+          <div class="row">
+            <div class="header-box no-bdr" ng-hide="mid_signup">
+              <p>{{ t.web.d.navbar.new_user }}</p>
+            <a ng-hide="on_start" class="btn signup-btn" ui-sref="start({goto: 'pricing'})">{{ t.web.d.navbar.signup }}</a>
+            <a ng-show="on_start" class="btn signup-btn" href ng-click="scrollTo('#pricing')">{{ t.web.d.navbar.signup }}</a>
+            </div>
+            <div class="header-box" ng-hide="mid_signup">
+                <p>{{ t.web.d.navbar.returning_user }}</p>
+                <a class="btn login-btn" ui-sref="login">{{ t.web.d.navbar.login }}</a> </div>
+            <div class="header-box referral-box" ng-hide="mid_signup">
+                <p>{{ t.web.d.navbar.referral }}</p>
+              <div class="txtbox">
+                <form ng-submit="start_game(share_code);">
+                    <input ng-model="share_code" type="text" class="form-control" placeholder="{{ t.web.d.navbar.code_placeholder }}">
+                  <input type="submit" class="btn play-btn" value="{{ t.web.d.navbar.play }}">
+                </form>
+              </div>
+            </div>
+            <div class="header-box">
+              <div uib-dropdown class="dropdown show">
+                <p><a uib-dropdown-toggle class="dropdown-toggle" href aria-haspopup="true" aria-expanded="false">{{ language_name }}<b class="caret"></b></a></p>
+                  <ul uib-dropdown-menu class="dropdown-menu">
+                    <li ng-repeat="language in me.language_choices"><a href ng-click="change_language(language[0]);">{{ language[1] }}</a></li>
+                  </ul>
+              </div>
+              <p class="contact">
+                  <a ng-hide="on_start" ui-sref="start({goto: 'contact-wrap'})">{{ t.web.d.navbar.contact_us }}</a>
+                  <a ng-show="on_start" ng-click="scrollTo('#contact-wrap')" href>{{ t.web.d.navbar.contact_us }}</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<header ng-show="me.logged_in">
+  <div class="bottom-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-xs-5"><a ui-sref="dashboard" class="logo"><img src="/static/design/images/logo.png"></a></div>
+        <div class="col-sm-9 col-xs-7">
+          <div uib-dropdown class="username dropdown show">
+            <a uib-dropdown-toggle class="dropdown-toggle" href aria-haspopup="true" aria-expanded="false">{{ me.name }}<b class="caret"></b></a>
+              <ul uib-dropdown-menu class="dropdown-menu">
+                <li><a ui-sref="dashboard"><i class="fa fa-dashboard fa-lft"></i>{{ t.web.d.navbar.dashboard }}</a></li>
+                <li><a ui-sref="settings"><i class="fa fa-cog fa-lft"></i>{{ t.web.d.navbar.settings }}</a></li>
+                <li><a ui-sref="subscription"><i class="fa fa-check-square-o fa-lft"></i>{{ t.web.d.navbar.subscription }}</a></li>
+                <li><a ui-sref="logout"><i class="fa fa-power-off fa-lft"></i>{{ t.web.d.navbar.logout }}</a></li>
+              </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

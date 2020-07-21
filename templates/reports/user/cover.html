@@ -1,0 +1,54 @@
+    <div class="page-container">
+        <div style="display:block;position:absolute;width:100%;height:2cm;top:24.25cm;;background:white;"></div>
+        {% if not game.owner.report_branding and not game.owner.branding.cover_image_url %}
+        <div style="display:block;position:absolute;width:18.494cm;height:18.653cm;left:0.291cm;top:7.805cm;">
+            <img style="opacity:0.07" src="static/reports/user/pg1-bg.png">
+        </div>
+        {% endif %}
+        <div style="display:block;position:absolute;width:5.477cm;height:2.619cm;left:13.335cm;top:-0.185cm;">
+            <img src="static/reports/user/mh-logo.png">
+        </div>
+        <div style="display:block;position:absolute;width:5.477cm;height:4.366cm;left:13.494cm;top:3.731cm;">
+            <p style="font-size:19px;margin:0;line-height:24px;">
+                {{ t.report.adult.cover.description }}
+            </p>
+        </div>
+        <div style="display:block;position:absolute;width:350px;height:5.106cm;left:0;top:11.129cm;">
+            {% if game.owner.report_branding and game.owner.branding %}
+            <p style="margin:0;margin-bottom:5px;">
+                {{ t.report.adult.cover.branding }}
+            </p>
+            <div><img style="width:100%;max-width:350px;height:100%;max-height:117px;" src="{{game.owner.branding.cover_image_url}}"></div>
+            <p>
+                {% for line in game.owner.branding.load_cover_text %}
+                {{line}}<br>
+                {% endfor %}
+            </p>
+            {% endif %}
+        </div>
+        <div style="display:block;position:absolute;min-width:6cm;max-width:13cm;left:0;top:5.398cm;">
+            <h1 style="margin:0;font-size:50px;">{{ game.player.name }}</h1>
+            <div style="height:0.8cm;">
+                <p style="text-transform:uppercase;color:#1e3d93;border-bottom:4px solid #1e3d93;position:absolute;left:0;bottom:0;margin:0;padding-bottom:3px;">{{ t.report.adult.cover.name }}</p>
+                <p style="width:100%;border-bottom:1px solid #1e3d93;position:absolute;right:0;bottom:0;margin:0;text-align:right;font-size:12px;">{{ last_activity_date_formatted }}</p>
+            </div>
+        </div>
+        <div style="display:block;position:absolute;width:19.050cm;height:4.815cm;left:0;top:20.585cm;">
+            <div style="display:block;position:absolute;width:3.942cm;height:0.106cm;0.026cm;background-color:#4f4f4f"></div>
+            <div style="display:block;position:absolute;width:100%;width:19.024cm;height:0.026cm;left:0.026cm;top:0.079cm;background-color:#4f4f4f;"></div>
+            <div style="display:block;position:absolute;width:5.662cm;height:1.667cm;left:0;top:0.899cm;">
+                <p style="font-size:0.397cm;margin-top:0;margin-bottom:0.22cm;">LifeWise Strategies, LLP</p>
+                <p style="font-size:0.344cm;margin-top:0;margin-bottom:0.22cm;"><img src="static/reports/user/phone.png" /> 406-361-8012 &nbsp;&nbsp;&nbsp;<img src="static/reports/user/mail.png" /> info@lifewise.us</p>
+                <p style="font-size:0.344cm;margin-top:0;margin-bottom:0.22cm;"><img src="static/reports/user/link.png" /> www.MoneyHabitudes.com</p>
+            </div>
+            <div style="display:block;position:absolute;width:1.191cm;height:1.508cm;left:8.07cm;top:0.926cm;"><img src="static/reports/user/logo-standalone-cards.png" /></div>
+            <div style="display:block;position:absolute;width:9.340cm;height:1.482cm;left:9.551cm;top:0.979cm;font-size:0.32cm;">
+                <p style="margin-top:0;margin-bottom:0.291cm;">{{ t.report.adult.cover.footer.mh_creation | safe }}</p>
+                <p style="margin-top:0;line-height:0.45cm;">{{ t.report.adult.cover.footer.mho_creation }}</p>
+            </div>
+            <div style="display:block;position:absolute;width:100%;height:1.455cm;left:0.026cm;top:3.36cm;font-size:0.3cm;>
+                <p style="margin-top:0;">{{ copyright_string | safe }}</p>
+                <p>{{ t.report.adult.cover.footer.disclaimer }}</p>
+            </div>
+        </div>
+    </div>

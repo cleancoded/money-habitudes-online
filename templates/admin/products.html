@@ -1,0 +1,15 @@
+{% for plan in plans %}
+<p>id: {{ plan.id }}</p>
+<p>active: {{ plan.active }}</p>
+<p>description: {{ plan.description }}</p>
+<p>name: {{ plan.name }}</p>
+<p>games: {{ plan.games }}</p>
+<p>amount: {{ plan.amount }}</p>
+{% endfor %}
+
+{% for product in products %}
+<p>id: {{ product.id }}</p>
+<p>description: {{ product.description }}</p>
+<p>name: {{ product.name }}</p>
+<p>games: {{ product.games }}</p>
+{% endfor %}

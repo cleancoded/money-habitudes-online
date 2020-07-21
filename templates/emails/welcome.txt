@@ -1,0 +1,4 @@
+Welcome to Money Habitudes {{account.name}}!
+
+Confirm your account by clicking the link below:
+{{data.confirm_url}}

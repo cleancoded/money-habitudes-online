@@ -1,0 +1,72 @@
+<mh-base>
+<div id="content" class="bg-lblue-pattern">
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-md-push-6 col-lg-5 col-lg-push-7" data-mh="row">
+        <div class="form-box-wrap">
+          <div class="form-box">
+            <div class="heading" ng-hide="next==='codes'">{{ t.web.s.signup.title }}</div>
+            <div class="heading" ng-show="next==='codes'">{{ t.web.s.signup.code_accept }}</div>
+            <div class="content">
+                <p class="msg" ng-hide="next==='codes'">
+                    {{ t.web.s.signup.welcome.s1.l1 }}
+                    <br>
+                    {{ t.web.s.signup.welcome.s1.l2 }}
+                </p>
+                <p class="msg" ng-show="next==='codes'">
+                    {{ t.web.s.signup.welcome.s2.l1 }}
+                    <br>
+                    {{ t.web.s.signup.welcome.s2.l2 }}
+                </p>
+              <form ng-submit="signup(signup_params.email, signup_params.password, signup_params.name, signup_params.language);">
+                <div class="form-group">
+                  <div class="input-group"><span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <input ng-model="signup_params.name" type="text" class="form-control" id="inlineFormInputGroup" maxlength="63" placeholder="{{ t.web.s.signup.name_placeholder }}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group"><span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                      <input ng-model="signup_params.email" type="email" class="form-control" id="inlineFormInputGroup" placeholder="{{ t.web.s.signup.email_placeholder }}" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group"><span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <input id="password" ng-model="signup_params.password" type="{{show_password ? 'text' : 'password'}}" class="form-control" placeholder="{{ t.web.s.signup.password_placeholder }}">
+                    <span class="input-group-btn">
+                        <button id="password-toggle" ng-click="show_password = !show_password;" class="btn toggle-password fa fa-fw" ng-class="{'fa-eye': !show_password, 'fa-eye-slash': show_password}" type="button"></button>
+                    </span> </div>
+                </div>
+                <div class="form-group">
+                  <label style="color:black;">{{ t.web.d.settings_general.language }}</label>
+                  <select class="form-control" ng-model="signup_params.language" ng-change="change_language();">
+                      <option ng-repeat="l in me.language_choices" value="{{ l[0] }}">{{ l[1] }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                    <p class="msg" ng-bind-html="privacy_disclaimer"></p>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-block" type="submit">{{ t.web.s.signup.title }}</button>
+                </div>
+              </form>
+              <div class="form-group"><a ui-sref="login({next: next, nextParams: nextParams, branding: branding})" class="btn-border btn-block">{{ t.web.s.signup.login }}</a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="signup-login-txt-col col-sm-12 col-md-6 col-md-pull-6 col-lg-7 col-lg-pull-5" data-mh="row">
+        <div class="signup-login-txt-col-content">
+          <h2 class="section-heading hidden-xs hidden-sm">{{ t.web.s.login.slogan }}</h2>
+          <div ng-show="branding" class="branding-area">
+            <div ng-show="branding.cover_image_url && branding.cover_text.length > 0" class="pic"><img ng-src="{{ branding.cover_image_url }}"></div>
+                <div ng-show="branding.cover_image_url && branding.cover_text.length === 0"><center><img ng-src="{{ branding.cover_image_url }}"></center></div>
+            <div class="txt" ng-show="branding.cover_text.length > 0">
+                <span ng-repeat="line in branding.cover_text">{{ line }}<br></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</mh-base>

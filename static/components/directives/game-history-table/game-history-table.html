@@ -1,0 +1,67 @@
+<div ng-show="game_history.results.length > 0 || filter_by">
+<div class="tbl-rounded-shadow-wrap">
+    <div class="tbl-heading-dgrey">
+        <div class="row">
+            <div class="col-sm-8 col-xs-5 text-col">{{ t.web.d.ght.title }}</div>
+            <div class="col-sm-4 col-xs-7">
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input ng-model="filter_by" ng-change="filter_change()" type="text" class="form-control" placeholder="Search" />
+                        <span class="input-group-btn">
+                            <button class="btn" type="submit" style="padding-top:10px;"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-rounded  dataTable tbl-dashboard">
+            <thead>
+                <tr class="bg-lgrey">
+                    <th width="20%" ng-click="get_history('last_activity_date');" ng-class="{'sorting_asc': order_by === 'last_activity_date', 'sorting_desc': order_by === '-last_activity_date', 'sorting': !str.includes('last_activity_date')}"><span>{{ t.web.d.ght.date }}</span></th>
+                    <th width="25%" ng-click="get_history('player_name');" ng-class="{'sorting_asc': order_by === 'player_name', 'sorting_desc': order_by === '-player_name', 'sorting': !str.includes('player_name')}"><span>{{ t.web.d.ght.usedby }}</span></th>
+                    <th ng-click="get_history('player_email');" ng-class="{'sorting_asc': order_by === 'player_email', 'sorting_desc': order_by === '-player_email', 'sorting': !str.includes('player_email')}"><span>{{ t.web.d.ght.email }}</span></th>
+                    <th ng-if="me.group_codes" ng-click="get_history('share_name');" ng-class="{'sorting_asc': order_by === 'share_name', 'sorting_desc': order_by === '-share_name', 'sorting': !str.includes('share_name')}"><span>{{ t.web.d.ght.group }}</span></th>
+                    <th width="25%" ng-click="get_history('completed');" ng-class="{'sorting_asc': order_by === 'completed', 'sorting_desc': order_by === '-completed', 'sorting': !str.includes('completed')}"><span>{{ t.web.d.ght.status }}</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="game in game_history.results">
+                    <td>{{ game.last_activity_date|date }}</td>
+                    <td ng-if="game.player.name"><span class="has-tip" title="{{ game.player.email }}">{{ game.player.name }}</span></td>
+                    <td ng-if="!game.player.name"><span class="has-tip" title="{{ game.player.email }}">{{ t.web.d.ght.anonymous }}</span></td>
+                    <td><span class="has-tip" title="{{ game.player.email }}">{{ game.player.email }}</span></td>
+                    <td ng-show="me.group_codes && game.owner.id === me.id">{{ game.share.name }}</td>
+                    <td ng-show="me.group_codes && game.owner.id !== me.id">{{ game.share.code }}</td>
+                    <td ng-if="!game.completed && game.player.id !== me.id" class="float-right">
+                        <a href ng-click="open_detail(game);" class="status-game-in-progress">{{ t.web.d.ght.in_progress }}</a>
+                    </td>
+                    <td  ng-if="!game.completed && game.player.id === me.id" class="float-right">
+                        <a href ui-sref="games({game_id: game.id})"><span class="status-game-in-progress">{{ t.web.d.ght.resume_play }}</span></a>
+                    </td>
+                    <td ng-if="game.completed" class="float-right" style="padding-bottom:2px;padding-top:10px;white-space:nowrap;">
+                        <div class="pull-left pie-chart-holder" style="width:30px;height:30px;"><mh-pie-chart data="game" tooltips="false" result-type=-1></mh-pie-chart></div>
+                        <a href ng-click="open_detail(game);" class="green status-view-details">{{ t.web.d.ght.view_details }}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="pagination-holder">
+    <mh-pager data="game_history" page="current_page"></mh-pager>
+</div>
+<p ng-show="false && me.is_admin && game_history.results.length > 0" class="text-center"><a href="/reports/games.csv" target="_blank">{{ web.d.ght.download_data }}</a></p>
+</div>
+<div ng-show="game_history.results.length === 0 && !me.is_admin && !filter_by">
+    <p>{{ t.web.d.ght.empty1 }}</p>
+        <ul>
+            <li>{{ t.web.d.ght.empty2 }}</li>
+            <li>{{ t.web.d.ght.empty3 }}</li>
+        </ul>
+</div>
+
+<div ng-show="game_history.results.length === 0 && me.is_admin && !filter_by">
+    <p>{{ t.web.d.ght.empty4 }}</p>
+</div>

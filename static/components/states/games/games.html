@@ -1,0 +1,7 @@
+<mh-messagebar></mh-messagebar>
+<section class="game-screen">
+     <a class="btn-close" ui-sref="dashboard"><i class="fa fa-close"></i></a>
+     <mh-tutorial complete="tutorial_complete" ng-show="game && !game.completed && (!game.answers.length && !tutorial_complete)"></mh-tutorial>
+     <mh-play ng-if="game && !game.completed && (game.answers.length || tutorial_complete)"></mh-play>
+     <mh-results ng-if="game && game.completed"></mh-results>
+</section>

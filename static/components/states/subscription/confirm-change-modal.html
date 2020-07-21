@@ -1,0 +1,57 @@
+<div ng-show="me.subscription.plan_id !== plan.id">
+    <div class="modal-header">
+        <h4 class="modal-title">Confirm subscription change</h4>
+    </div>
+    <div class="modal-body">
+        <p>Your subscription will be changed from:</p>
+        <p><b>
+            {{ current_plan.name }}<br>
+            {{ current_plan.price }} per <span ng-show="current_plan.id.indexOf('monthly') > 0">month</span> <span ng-show="current_plan.id.indexOf('yearly') > 0">year
+            </span></b></p>
+        <p>to</p>
+        <p><b>
+            {{plan.name }}<br>
+            {{ plan.price }} per {{ interval }}
+        </b></p>
+        <p>Any billing changes are prorated and will appear on your next bill.</p>
+    </div>
+    <div class="modal-footer">
+        <span ng-hide="working">
+        <a href class="btn-border" ng-click="close_confirm_change_modal();">Cancel</a>
+        <button class="btn" ng-click="change_subscription(plan.id);">Change subscription</button>
+        </span>
+        <button ng-show="working" class="btn" disabled>Working <mh-loading></mh-loading></button>
+    </div>
+</div>
+<div ng-show="me.subscription.plan_id === plan.id && (site_branding_option || report_branding_option)">
+    <div class="modal-header">
+        <h4 class="modal-title">{{ t.web.s.subscription.branding.title }}</h4>
+    </div>
+    <div class="modal-body">
+        <p>{{ t.web.s.subscription.branding.p1 }}</p>
+        <p>{{ t.web.s.subscription.branding.p2 }}</p>
+        <ul>
+            <li ng-show="site_branding_option">{{ t.web.s.subscription.branding.site }}</li>
+            <li ng-show="report_branding_option">{{ t.web.s.subscription.branding.report }}</li>
+        </ul>
+        <p>{{ grand_total_text }}</p>
+    </div>
+    <div ng-if="STRIPE_PUBLISHABLE_KEY" class="modal-footer">
+        <span ng-hide="working">
+        <a href class="btn-border" ng-click="close_confirm_change_modal();">{{ t.web.s.subscription.branding.cancel }}</a>
+        <button class="btn"
+                stripe-checkout="do_branding_checkout"
+                data-key="{{ STRIPE_PUBLISHABLE_KEY }}"
+                data-name="Branding options"
+                data-description="Pay today: {{ grand_total }}"
+                data-amount="grand_total_int"
+                data-zip-code=true
+                data-billing-address=true
+                data-email="{{ me.email }}"
+                data-allow-remember-me="false">
+            {{ t.web.s.subscription.branding.proceed }}
+            <i class="fa fa-angle-right fa-rgt"></i>
+        </button>
+        <button ng-show="working" class="btn" disabled>{{ t.web.s.subscription.branding.working }} <mh-loading></mh-loading></button>
+    </div>
+</div>

@@ -1,0 +1,265 @@
+    <div class="page-container">
+        <div style="position:absolute;width:8.387cm;height:0.794cm;left:0.026cm;top:0.026cm;">
+            <h1 style="margin:0;">{{ t.report.adult.pg2.title }}</h1>
+        </div>
+        <div style="position:absolute;width:12.541cm;height:1.164cm;left:0.026cm;top:1.455cm;">
+            <p style="margin:0;line-height:0.6cm;">{{ t.report.adult.pg2.subtitle }}</p>
+        </div>
+        <div style="position:absolute;width:2.408cm;height:3.069cm;left:16.642cm;top:0.026cm;">
+            <img src="static/reports/user/logo-standalone-cards-2.png" />
+        </div>
+        <div style="position:absolute;width:18.918cm;height:3.254cm;left:0.079cm;top:4.366cm;">
+            <div style="position:absolute;width:0.979cm;height:0.979cm;top:0;left:0;">
+                <img src="static/reports/user/dog.png" />
+            </div>
+            <div style="position:absolute;width:3.519cm;height:1.905cm;left:1.376cm;top:0cm;">
+                <p style="margin:0;font-size:17px;color:#03a0fa;line-height:25px;">{{ t.report.adult.pg2.example1.title }}</p>
+            </div>
+            <div style="position:absolute;width:0.079cm;height:3.254cm;left:5.742cm;top:0.053cm;background:#03a0fa;">
+            </div>
+            <div style="position:absolute;width:12.277cm;height:5.768cm;left:6.631cm;top:0.053cm;">
+                <p style="margin-top:-4px;line-height:24px;">{{ t.report.adult.pg2.example1.p1 }}</p>
+                <p style="margin-top:-4px;line-height:24px;">{{ t.report.adult.pg2.example1.p2 }}</p>
+            </div>
+        </div>
+        <div style="position:absolute;width:18.918cm;height:5.927cm;left:0.079cm;top:8.943cm;">
+            <div style="position:absolute;width:0.979cm;height:0.979cm;top:0;left:0;">
+                <img src="static/reports/user/pig.png" />
+            </div>
+            <div style="position:absolute;width:3.519cm;height:1.905cm;left:1.376cm;top:0cm;">
+                <p style="margin:0;font-size:17px;color:#03a0fa;line-height:25px;">{{ t.report.adult.pg2.example2.title }}</p>
+            </div>
+            <div style="position:absolute;width:0.079cm;height:5.874cm;left:5.742cm;top:0.053cm;background:#03a0fa;">
+            </div>
+            <div style="position:absolute;width:12.277cm;height:5.768cm;left:6.631cm;top:0.053cm;">
+                <p style="margin-top:-4px;line-height:24px;">{{ t.report.adult.pg2.example2.p1 }}</p>
+                <p style="margin-top:-4px;line-height:24px;">{{ t.report.adult.pg2.example2.p2 }}</p>
+            </div>
+        </div>
+        <div style="position:absolute;width:1.455cm;height:1.402cm;left:0.097cm;top:16.166cm;">
+            <img src="static/reports/user/quote.png" />
+        </div>
+        <div style="position:absolute;width:16.034cm;height:1.111cm;left:2.09cm;top:16.642cm;line-height:0.6cm;">
+            <p style="margin:0;">{{ t.report.adult.pg2.quote.p1 }}</p>
+        </div>
+        <div style="position:absolute;width:9.737cm;height:2.540cm;left:2.699cm;top:18.23cm;">
+            <p style="margin:0;"><ul style="margin:0;padding-left:0.4cm;line-height:0.65cm;">
+                <li>{{ t.report.adult.pg2.quote.li1 }}</li>
+                <li>{{ t.report.adult.pg2.quote.li2 }}</li>
+                <li>{{ t.report.adult.pg2.quote.li3 }}</li>
+                <li>{{ t.report.adult.pg2.quote.li4 }}</li>
+            </ul></p>
+        </div>
+        <div style="position:absolute;width:16.192cm;height:1.111cm;left:2.09cm;top:21.273cm;line-height:0.6cm;">
+            <p style="margin:0;">{{ t.report.adult.pg2.quote.p2 }}</p>
+        </div>
+    </div>
+    <div class="page-container">
+        <div style="position:absolute;width:12.387cm;height:0.794cm;left:0.026cm;top:0.026cm;">
+            <h1 style="margin:0;">{{ t.report.adult.pg3.title }}</h1>
+        </div>
+        <div style="position:absolute;width:17cm;height:1.164cm;left:0.026cm;top:2.487cm;">
+            <p style="margin:0;line-height:0.6cm;">
+                {{ t.report.adult.pg3.subtitle.l1 }}
+                <br>
+                {{ t.report.adult.pg3.subtitle.l2 }}
+            </p>
+        </div>
+        <div style="position:absolute;width:2.408cm;height:3.069cm;left:16.642cm;top:0.026cm;">
+            <img src="static/reports/user/logo-standalone-cards-2.png" />
+        </div>
+        <div style="position:absolute;width:13.176cm;height:0.609cm;left:2.937cm;top:5.318cm;">
+            <p style="margin:0;font-size:0.5cm;text-align:center;"><strong>{{ t.report.adult.pg3.table.title }}</strong></p>
+        </div>
+        <div style="position:absolute;width:8.493cm;height:0.423cm;left:5.265cm;top:6.191cm;">
+            <p style="margin:0;text-align:center;color:#03a0fa;">
+                {{ report_table_subtitle_string }}
+            </p>
+        </div>
+        <div style="position:absolute;width:19.076cm;height:9.869cm;left:0;top:7.197cm;">
+            <img src="static/reports/user/table.png">
+        </div>
+        {% for category in sorted_categories %}
+        {% with ''|center:category.1.1 as range %}
+        {% if category.0 == 'se' %}
+        <div style="position:absolute;width:10.5cm;left:8.678cm;top:8.414cm;">
+        {% for _ in range %}
+            <img style="margin-right:0.350cm;margin-left:0;" src="static/reports/user/se-card-small.png">
+        {% endfor %}
+        </div>
+        {% endif %}
+        {% if category.0 == 'pl' %}
+        <div style="position:absolute;width:10.5cm;left:8.678cm;top:9.737cm;">
+        {% for _ in range %}
+            <img style="margin-right:0.350cm;margin-left:0;" src="static/reports/user/pl-card-small.png">
+        {% endfor %}
+        </div>
+        {% endif %}
+        {% if category.0 == 'sp' %}
+        <div style="position:absolute;width:10.5cm;left:8.678cm;top:10.98cm;">
+        {% for _ in range %}
+            <img style="margin-right:0.350cm;margin-left:0;" src="static/reports/user/sp-card-small.png">
+        {% endfor %}
+        </div>
+        {% endif %}
+        {% if category.0 == 'st' %}
+        <div style="position:absolute;width:10.5cm;left:8.678cm;top:12.224cm;">
+        {% for _ in range %}
+            <img style="margin-right:0.350cm;margin-left:0;" src="static/reports/user/st-card-small.png">
+        {% endfor %}
+        </div>
+        {% endif %}
+        {% if category.0 == 'gi' %}
+        <div style="position:absolute;width:10.5cm;left:8.678cm;top:13.494cm;">
+        {% for _ in range %}
+            <img style="margin-right:0.350cm;margin-left:0;" src="static/reports/user/gi-card-small.png">
+        {% endfor %}
+        </div>
+        {% endif %}
+        {% if category.0 == 'ca' %}
+        <div style="position:absolute;width:10.5cm;left:8.678cm;top:14.79cm;">
+        {% for _ in range %}
+            <img style="margin-right:0.350cm;margin-left:0;" src="static/reports/user/ca-card-small.png">
+        {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        {% endfor %}
+        <div style="position:absolute;width:100%;height:0.476cm;left:0;top:17.886cm;">
+            <p style="margin:0;"><strong>{{ t.report.adult.pg3.notes.title }}</strong></p>
+            <ul style="padding-left:0.5cm;line-height:1.7em;">
+                <li>{{ t.report.adult.pg3.notes.l1 }}</li>
+                <li>{{ t.report.adult.pg3.notes.l2 }}</li>
+                <li>{{ t.report.adult.pg3.notes.l3 }}</li>
+                <li>{{ t.report.adult.pg3.notes.l4 }}</li>
+                <li>{{ t.report.adult.pg3.notes.l5 }}</li>
+            </ul>
+        </div>
+    </div>
+    {% for category in category_strings %}
+    <div class="page-container">
+        <div style="position:absolute;left:-1.27cm;top:0.079cm;width:21.59cm;">
+            <p style="text-align:center;white-space:nowrap;">
+                <img style="display:inline-block;" src="static/reports/user/{{ category.id }}-header-card.png">
+                <span class="color-{{ category.id }}" style="font-size: 50px;position:relative;top:-10px;"><strong>{{ category.name }}</strong></span>
+            </p>
+        </div>
+        <div style="position:absolute;left:-1.27cm;top:1.958cm;width:21.59cm;height:0.476cm;">
+            <p class="color-{{ category.id }}" style="font-size:1.2em;text-align:center;">{{category.description }}</p>
+        </div>
+        <div style="position:absolute;left:0;top:3.704cm;width:19.050cm;height:0.026cm;background:#dddddd;"></div>
+        <div style="position:absolute;left:0;top:4.736cm;width:100%;">
+            <p style="margin:0;text-align:center;font-size:0.45cm;"><strong>{{ t.report.adult.cat.combo }}</strong></p>
+        </div>
+        <div style="position:absolute;left:13.282cm;top:6.218cm;width:2.778cm;height:3.786cm;">
+            <p class="color-{{ category.id }}" style="margin:0;font-size:0.400cm;text-align:center;"><strong>{{ t.report.adult.cat.thatsme }}</strong></p>
+            {% if category.always_count > 1 %}
+            <div style="position:absolute;left:0.159cm;top:0.846cm;">
+                <img src="static/reports/user/cardbg-angle.png">
+            </div>
+            {% endif %}
+            <div style="position:absolute;left:0.291cm;top:0.952cm;">
+                <img src="static/reports/user/{{ category.id }}-cardbg-straight.png">
+                <p style="position:absolute;top:0.7cm;margin:0;width:100%;color:white;font-size:1cm;text-align:center;"><strong>{{ category.always_count }}</strong></p>
+            </div>
+        </div>
+        <div style="position:absolute;left:8.149cm;top:6.218cm;width:2.778cm;height:3.786cm;">
+            <p class="color-{{ category.id }}" style="margin:0;font-size:0.400cm;text-align:center;"><strong>{{ t.report.adult.cat.sometimes }}</strong></p>
+            {% if category.sometimes_count > 1 %}
+            <div style="position:absolute;left:0.159cm;top:0.846cm;">
+                <img src="static/reports/user/cardbg-angle.png">
+            </div>
+            {% endif %}
+            <div style="position:absolute;left:0.291cm;top:0.952cm;">
+                <img src="static/reports/user/{{ category.id }}-cardbg-straight.png">
+                <p style="position:absolute;top:0.7cm;margin:0;width:100%;color:white;font-size:1cm;text-align:center;"><strong>{{ category.sometimes_count }}</strong></p>
+            </div>
+        </div>
+        <div style="position:absolute;left:3.069cm;top:6.218cm;width:2.778cm;height:3.786cm;">
+            <p class="color-{{ category.id }}" style="margin:0;font-size:0.400cm;text-align:center;"><strong>{{ t.report.adult.cat.notme }}</strong></p>
+            {% if category.never_count > 1 %}
+            <div style="position:absolute;left:0.159cm;top:0.846cm;">
+                <img src="static/reports/user/cardbg-angle.png">
+            </div>
+            {% endif %}
+            <div style="position:absolute;left:0.291cm;top:0.952cm;">
+                <img src="static/reports/user/{{ category.id }}-cardbg-straight.png">
+                <p style="position:absolute;top:0.7cm;margin:0;width:100%;color:white;font-size:1cm;text-align:center;"><strong>{{ category.never_count }}</strong></p>
+            </div>
+        </div>
+        <div style="position:absolute;left:1.27cm;top:10.848cm;width:16.59cm;"><center>{{ category.summary }}</center></div>
+        <div style="position:absolute;left:0;top:13.017cm;width:19.050cm;height:0.026cm;background:#dddddd;"></div>
+        <div style="position:absolute;top:13cm;width:100%;">
+            <h1 style="text-align:center;">{{ t.report.adult.cat.haa }}</h1>
+            <div>{{ category.meaning|safe }}</div>
+        </div>
+    </div>
+
+    <div class="page-container">
+        <div style="position:relative;">
+            <p class="color-{{category.id}}" style="font-size:0.6cm;margin:0;"><img src="static/reports/user/eye.png"> <strong>{{ t.report.adult.cat.hosy }}</strong></p>
+            <div>{{ category.hose|safe }}</div>
+        </div>
+        <div style="position:relative;height:0.926cm;">
+            <div style="position:absolute;">
+                <img src="static/reports/user/cat-border.png">
+            </div>
+            <div style="position:absolute;left:9.155cm;">
+                <img src="static/reports/user/{{ category.id }}-card-small.png">
+            </div>
+        </div>
+        <div style="display:inline-block;position:relative;">
+            <div style="display:inline-block;position:relative;width:8.5cm;vertical-align:top;">
+                <p class="color-{{category.id}}" style="font-size:0.6cm;margin:0;"><img src="static/reports/user/thumbs.png"> <strong>{{ t.report.adult.cat.advantages }}</strong></p>
+                <div>{{ category.advantages|safe }}</div>
+            </div>
+            <div style="display:inline-block;position:relative;width:0.026cm;height:7.673cm;margin-left:0.9cm;margin-top:0.5cm;vertical-align:top;">
+                <img src="static/reports/user/line-vert.png">
+            </div>
+            <div style="display:inline-block;position:relative;width:8.5cm;margin-left:0.5cm;vertical-align:top;">
+                <p class="color-{{category.id}}" style="font-size:0.6cm;margin:0;"><img src="static/reports/user/mountain.png"> <strong>{{ t.report.adult.cat.challenges }}</strong></p>
+                <div>{{ category.challenges|safe }}</div>
+            </div>
+        </div>
+        <div style="page-break-inside:avoid">
+            <div style="position:relative;height:0.926cm;">
+                <div style="position:absolute;">
+                    <img src="static/reports/user/cat-border.png">
+                </div>
+                <div style="position:absolute;left:9.155cm;">
+                    <img src="static/reports/user/{{ category.id }}-card-small.png">
+                </div>
+            </div>
+            <p class="color-{{category.id}}" style="font-size:0.6cm;margin:0;"><img src="static/reports/user/question.png"> <strong>{{ t.report.adult.cat.gq }}</strong></p>
+            <div>{{ category.general|safe }}</div>
+        </div>
+        {% if category.dominant %}
+        <div style="page-break-inside:avoid">
+            <div style="position:relative;height:0.926cm;">
+                <div style="position:absolute;">
+                    <img src="static/reports/user/cat-border.png">
+                </div>
+                <div style="position:absolute;left:9.155cm;">
+                    <img src="static/reports/user/{{ category.id }}-card-small.png">
+                </div>
+            </div>
+            <p class="color-{{category.id}}" style="font-size:0.6cm;margin:0;"><img src="static/reports/user/chart.png"> <strong>{{ t.report.adult.cat.dom }}</strong></p>
+            <div>{{ category.dominant|safe }}</div>
+        </div>
+        {% endif %}
+        {% if category.missing %}
+        <div style="page-break-inside:avoid">
+            <div style="position:relative;height:0.926cm;">
+                <div style="position:absolute;">
+                    <img src="static/reports/user/cat-border.png">
+                </div>
+                <div style="position:absolute;left:9.155cm;">
+                    <img src="static/reports/user/{{ category.id }}-card-small.png">
+                </div>
+            </div>
+            <p class="color-{{category.id}}" style="font-size:0.6cm;margin:0;"><img src="static/reports/user/x.png"> <strong>{{ t.report.adult.cat.miss }}</strong></p>
+            <div>{{ category.missing|safe }}</div>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}

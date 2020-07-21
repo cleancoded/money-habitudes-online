@@ -1,0 +1,262 @@
+<mh-base>
+    <div ng-if="subscription.manual">
+        <div class="alert alert-success" role="alert">{{ t.web.s.subscription.manual }}</div>
+    </div>
+<div ng-if="STRIPE_PUBLISHABLE_KEY && !subscription.manual" id="content">
+  <div class="container">
+    <div ng-if="false" class="alert alert-danger">
+      <p>{{ t.web.s.subscription.suspended }}</p>
+      <a href="#" class="green"><strong>{{ t.web.s.subscription.reactivate }}</strong></a> </div>
+    <div class="settignpage-wrap">
+      <div class="content-box">
+        <div class="heading">{{ t.web.s.subscription.title }}</div>
+        <div class="row subscription-planwrap">
+          <div class="col-md-3 col-sm-6">
+            <div class="subscription-planbox subscription-standard">
+              <div class="radiobox">
+                <input ng-model="option_select" value="individual" ng-change="calc_price(void, 'individual');" name="rb-plantype" type="radio"/>
+              </div>
+              <div class="plan-name">{{ t.web.s.subscription.plan.individual.name }}</div>
+              <div class="plan-desc">{{ t.web.s.subscription.plan.individual.description }}</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="subscription-planbox subscription-pro">
+              <div class="radiobox">
+                <input ng-model="option_select" value="professional" ng-change="calc_price(void, 'professional');" name="rb-plantype" type="radio"/>
+              </div>
+              <div class="plan-name">{{ t.web.s.subscription.plan.pro.name }}</div>
+              <div class="plan-desc">{{ t.web.s.subscription.plan.pro.description }}</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="subscription-planbox subscription-proplus">
+              <div class="radiobox">
+                <input ng-model="option_select" value="proplus" ng-change="calc_price(void, 'proplus');" name="rb-plantype" type="radio"/>
+              </div>
+              <div class="plan-name">{{ t.web.s.subscription.plan.plus.name }}</div>
+              <div class="plan-desc">{{ t.web.s.subscription.plan.plus.description }}</div>
+              <div class="most-popularbox"><img src="/static/design/images/most-popular.png"></div>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="subscription-planbox subscription-premium">
+              <div class="radiobox">
+                <input ng-model="option_select" value="premium" ng-change="calc_price(void, 'premium');" name="rb-plantype" type="radio"/>
+              </div>
+              <div class="plan-name">{{ t.web.s.subscription.plan.premium.name }}</div>
+              <div class="plan-desc">{{ t.web.s.subscription.plan.premium.description }}</div>
+            </div>
+          </div>
+        </div>
+        <table ng-hide="option_select==='individual'" class="table tbl-subscription" cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr class="bg-lgrey">
+              <th>{{ t.web.s.subscription.table.h1 }}</th>
+              <th class="col-price">{{ t.web.s.subscription.table.h2 }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="row">
+                  <div class="col-md-4 col-sm-6">
+                    <div class="radio subscription-type">
+                     <label>
+                        <input ng-model="product_select" value="monthly" ng-change="calc_price('monthly', void);" type="radio" name="one">
+                      {{ t.web.s.subscription.monthly.name }}
+                        <span ng-show="option_select==='professional'"> {{ t.web.s.subscription.monthly.pro }}</span>
+                        <span ng-show="option_select==='proplus'"> {{ t.web.s.subscription.monthly.plus }}</span>
+                        <span ng-show="option_select==='premium'"> {{ t.web.s.subscription.monthly.premium }}</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6">
+                    <div class="radio subscription-type">
+                     <label>
+                        <input ng-model="product_select" value="yearly" ng-change="calc_price('yearly', void);" type="radio" name="one">
+                      {{ t.web.s.subscription.yearly.name }}
+                        <span ng-show="option_select==='professional'"> {{ t.web.s.subscription.yearly.pro }}</span>
+                        <span ng-show="option_select==='proplus'"> {{ t.web.s.subscription.yearly.plus }}</span>
+                        <span ng-show="option_select==='premium'"> {{ t.web.s.subscription.yearly.premium }}</span>
+                        <div ng-show="option_select==='professional'" class="subtxt">{{ t.web.s.subscription.yearly.pro_savings }}</div>
+                        <div ng-show="option_select==='proplus'" class="subtxt">{{ t.web.s.subscription.yearly.plus_savings }}</div>
+                        <div ng-show="option_select==='premium'" class="subtxt">{{ t.web.s.subscription.yearly.prem_savings }}</div>
+                     </label>
+                    </div>
+                  </div>
+                </div></td>
+              <td class="col-price">{{ core_plan.price }}</td>
+            </tr>
+            <tr>
+                <td><i class="fa fa-check flt-lft"></i><div class="lbl-txt" ng-if="interval">{{ t.web.s.subscription.includes }} <strong>{{ plan.games }} {{ t.web.s.subscription.uses_per }} <span ng-if="interval === 'month'">{{ t.web.s.subscription.interval.month }}</span><span ng-if="interval === 'year'">{{ t.web.s.subscription.interval.year }}</span></strong></strong> <sup><a class="question-icon" href="javascript:void(0)" data-toggle="tooltip" data-html="true" title="{{ t.web.s.subscription.tip1 }}"><i class="fa fa-question-circle"></i></a></sup></div></td>
+              <td class="col-price"></td>
+            </tr>
+          </tbody>
+        </table>
+        <table ng-hide="option_select==='individual'" class="table tbl-subscription" cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr class="bg-lgrey">
+              <th>{{ t.web.s.subscription.addon.t1 }}</th>
+              <th class="col-price">{{ t.web.s.subscription.addon.t2 }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-show="option_select==='proplus' || option_select=='premium'">
+              <td><i class="fa fa-check flt-lft"></i><div class="lbl-txt">{{ t.web.s.subscription.addon.group.name }} <sup><a class="question-icon" href="javascript:void(0)" data-toggle="tooltip" data-html="true" title="{{ t.web.s.subscription.addon.group.description }}"><i class="fa fa-question-circle"></i></a></sup> - {{ t.web.s.subscription.addon.included }}</div></td>
+              <td class="col-price">-</td>
+            </tr>
+            <tr ng-show="option_select==='professional'">
+              <td>
+              <div class="checkbox">
+              <label>
+                  <input ng-model="group_codes_option" ng-change="calc_price(void, void, group_codes_option);" type="checkbox">
+                  {{ t.web.s.subscription.addon.group.name }}
+                  <span ng-show="product_select==='monthly'"> {{ t.web.s.subscription.addon.group.month }}</span>
+                  <span ng-show="product_select==='yearly'"> {{ t.web.s.subscription.addon.group.month }}</span>
+                  <sup><a class="question-icon" href="javascript:void(0)" data-toggle="tooltip" data-html="true" title="{{ t.web.s.subscription.addon.group.description }}"><i class="fa fa-question-circle"></i></a></sup>
+                  <div class="subtxt">{{ t.web.s.subscription.addon.group.save }}</div>
+                  </label>
+                  </div>
+                </td>
+                <td class="col-price">
+                    <span ng-hide="group_codes_option">-</span>
+                    <span ng-show="group_codes_option && product_select==='monthly'">$5</span>
+                    <span ng-show="group_codes_option && product_select==='yearly'">$55</span>
+                </td>
+            </tr>
+            <tr ng-show="option_select=='premium'">
+              <td><i class="fa fa-check flt-lft"></i><div class="lbl-txt">{{ t.web.s.subscription.addon.report.name }} <sup><a class="question-icon" href="javascript:void(0)" data-toggle="tooltip" data-html="true" title="{{ t.web.s.subscription.addon.report.description }}" ><i class="fa fa-question-circle"></i></a></sup> - Included</div></td>
+              <td class="col-price">-</td>
+            </tr>
+            <tr ng-show="option_select === 'professional' || option_select === 'proplus'">
+              <td>
+              <div class="checkbox">
+              <label>
+                  <input ng-model="professional_report_option" ng-change="calc_price(void, void, void, professional_report_option);" type="checkbox">
+                  {{ t.web.s.subscription.addon.report.name }}
+                  <span ng-show="product_select==='monthly'"> {{ t.web.s.subscription.addon.group.month }}</span>
+                  <span ng-show="product_select==='yearly'"> {{ t.web.s.subscription.addon.group.year }}</span>
+                  <sup><a class="question-icon" href="javascript:void(0)" data-toggle="tooltip" data-html="true" title="{{ t.web.s.subscription.addon.report.description }}"><i class="fa fa-question-circle"></i></a></sup>
+                  <div class="subtxt">{{ t.web.s.subscription.addon.group.save }}</div>
+                  </label>
+                  </div>
+                </td>
+                <td class="col-price">
+                    <span ng-hide="professional_report_option">-</span>
+                    <span ng-show="professional_report_option && product_select==='monthly'">$5</span>
+                    <span ng-show="professional_report_option && product_select==='yearly'">$55</span>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+        <table ng-hide="option_select==='individual'" class="table tbl-subscription" cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr class="row-total">
+                <td><span ng-if="plan && product_select === 'monthly'">{{ t.web.s.subscription.monthly_rate }}</span><span ng-if="plan && product_select === 'yearly'">{{ t.web.s.subscription.yearly_rate }}</span></td>
+              <td class="col-price">{{ plan.price }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div ng-hide="option_select==='individual'" class="content-box subscription-branding-options">
+          <div class="heading">{{ t.web.s.subscription.addon.branding.options }}</div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="branding-box">
+              <div class="iconbox">
+                <div class="icon"><img src="/static/design/images/icon-apps-scrn-branding.png" class="img-responsive"></div>
+              </div>
+              <div class="txtbox">
+                <div class="name">{{ t.web.s.subscription.addon.branding.app.title }}</div>
+                <div class="txt">{{ t.web.s.subscription.addon.branding.app.description }}</div>
+                <div class="price">$149<span class="subtxt"> {{ t.web.s.subscription.addon.branding.per }}</span></div>
+                <div ng-show="me.site_branding" class="activation"><i class="fa fa-check fa-lft"></i><label class="txt-green">{{ t.web.s.subscription.addon.branding.activated }}</label></div>
+                <div ng-hide="me.site_branding"class="checkbox activation">
+                  <label><input ng-model="site_branding_option" ng-change="calc_price(void, void, void, void, site_branding_option);" type="checkbox">
+                  {{ t.web.s.subscription.addon.branding.activate }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="branding-box">
+              <div class="iconbox">
+                <div class="icon"><img src="/static/design/images/icon-app-report.png" class="img-responsive"></div>
+              </div>
+              <div class="txtbox">
+                <div class="name">{{ t.web.s.subscription.addon.branding.report.title }}</div>
+                <div class="txt">{{ t.web.s.subscription.addon.branding.report.description }}</div>
+                <div class="price">$149<span class="subtxt"> {{ t.web.s.subscription.addon.branding.per }}</span></div>
+                <div ng-show="me.report_branding" class="activation"><i class="fa fa-check fa-lft"></i><label class="txt-green">{{ t.web.s.subscription.addon.branding.activated }}</label></div>
+                <div ng-hide="me.report_branding"class="checkbox activation">
+                  <label><input ng-model="report_branding_option" ng-change="calc_price(void, void, void, void, void, report_branding_option);" type="checkbox">
+                  {{ t.web.s.subscription.addon.branding.activate }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tbl-rounded-shadow-wrap">
+        <table class="table table-rounded tbl-subscription" cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+                <th>{{ t.web.s.subscription.amount_payable }}</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-hide="option_select==='individual'">
+                <td>{{ t.web.s.subscription.summary_title }}</td>
+              <td style="text-align: right;" ng-hide="me.subscription && me.subscription.active" class="col-price">{{ plan.price }}</td>
+              <td style="text-align: right;" ng-show="me.subscription && me.subscription.active && me.subscription.plan_id === plan.id" class="col-price">-</td>
+              <td style="text-align: right;" ng-show="me.subscription && me.subscription.active && me.subscription.plan_id !== plan.id" class="">{{ t.web.s.subscription.prorated }}</td>
+            </tr>
+            <tr ng-hide="option_select==='individual'">
+                <td>{{ t.web.s.subscription.branding_total }}</td>
+              <td style="text-align: right;">{{ branding_total }}</td>
+            </tr>
+            <tr class="row-total">
+                <td>{{ t.web.s.subscription.grand_total }}</td>
+              <td style="text-align: right;">{{ grand_total }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="btn-row btn-row-multiple-btns text-center">
+          <span ng-hide="working">
+          <a ng-hide="me.logged_in" ui-sref="signup({next: 'subscription', nextParams: {'option': option_select, 'product': product_select, 'group': group_codes_option, 'report': professional_report_option, 'siteb': site_branding_option, 'reportb': report_branding_option}})" class="btn display-xs-block">
+              {{ t.web.s.subscription.create_account }}
+              <i class="fa fa-angle-right fa-rgt"></i>
+          </a>
+          <button ng-show="!working && me.logged_in && (!me.subscription || !me.subscription.active)"
+                  class="btn"
+                  stripe-checkout="do_checkout"
+                  data-key="{{ STRIPE_PUBLISHABLE_KEY }}"
+                  data-name="{{ plan.name }}"
+                  data-description="Pay today: {{ grand_total }}"
+                  data-amount="grand_total_int"
+                  data-zip-code=true
+                  data-billing-address=true
+                  data-email="{{ me.email }}"
+                  data-allow-remember-me="false">
+              {{ t.web.s.subscription.proceed }}
+              <i class="fa fa-angle-right fa-rgt"></i>
+          </button>
+          <a href ng-click="open_cancel_modal();" ng-show="me.logged_in && me.subscription && me.subscription.active" class="btn-border display-xs-block xs-margn-bot">
+              <i class="fa fa-close fa-lft"></i>
+              {{ t.web.s.subscription.cancel_subscription }}
+          </a>
+          <button ng-show="me.logged_in && me.subscription && me.subscription.active && order_string && (me.subscription.plan_id !== order_string || site_branding_option || report_branding_option)" class="btn" ng-click="open_confirm_change_modal();">
+              {{ t.web.s.subscription.apply }}
+              <i class="fa fa-angle-right fa-rgt"></i>
+          </button>
+          </span>
+          <button ng-show="working" class="btn" disabled>{{ t.web.s.subscription.working }} <mh-loading></mh-loading></button>
+      </div>
+    </div>
+  </div>
+</div>
+</mh-base>

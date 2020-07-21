@@ -1,0 +1,20 @@
+<mh-base>
+<div id="content">
+<div class="container">
+    <div ng-if="false" class="alert alert-danger">
+      <p>{{ t.web.s.settings.subscription.suspended.h }}</p>
+      <a href="#" class="green"><strong>{{ t.web.s.settings.subscription.suspended.h }}</strong></a></div>
+    <div class="settingpage-wrap">
+        <ul class="nav nav-tabs" ng-style="border_line_style">
+          <li role="presentation" ng-class="{'active': settings_page === 'general'}"><a ui-sref="settings({page: 'general'})"><i class="fa fa-cog"></i> {{ t.web.s.settings.general.title }}</a></li>
+          <li role="presentation" ng-class="{'active': settings_page === 'codes'}"><a ng-show="me.is_admin" ui-sref="settings({page: 'codes'})" ><i class="fa fa-users"></i><i class="fa fa-key"></i> {{ t.web.s.settings.codes.title }}</a></li>
+          <li role="presentation" ng-class="{'active': settings_page === 'branding'}" ng-show="me.report_branding || me.site_branding"><a ui-sref="settings({page: 'branding'})"><i class="fa fa-vcard"></i> {{ t.web.s.settings.branding.title }}</a></li>
+        </ul>
+      </nav>
+      <mh-settings-general ng-if="settings_page === 'general'"></mh-settings-general>
+      <mh-settings-codes ng-if="settings_page === 'codes'"></mh-settings-codes>
+      <mh-settings-branding ng-if="settings_page === 'branding'"></mh-settings-branding>
+    </div>
+</div>
+</div>
+</mh-base>

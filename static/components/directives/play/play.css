@@ -1,0 +1,47 @@
+.answer-notme.ng-hide {
+    transition: 0.5s linear all;
+    opacity: 0;
+    left: -100px;
+}
+
+.answer-sometimes.ng-hide {
+    transition: 0.5s linear all;
+    opacity: 0;
+    top: 100px;
+}
+
+.answer-thatsme.ng-hide {
+    transition: 0.5s linear all;
+    opacity: 0;
+    left: 100px;
+}
+
+.animate-enter, 
+.animate-leave
+{ 
+    -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    position: relative;
+    display: block;
+} 
+
+.animate-enter.animate-enter-active, 
+.animate-leave {
+    opacity: 1;
+    left: 0;
+    height: 30px;
+}
+
+.animate-leave.animate-leave-active,
+.animate-enter {
+    opacity: 0;
+    left: -50px;
+    height: 0px;
+}
+
+.game-screen-card-container .card-one{transform: transform: translate(3px,3px); -webkit-transform: translate(3px,3px); -ms-transform: translate(3px,3px); z-index:1}
+.game-screen-card-container .card-two{transform: translate(2px,2px); -webkit-transform: translate(2px,2px); -ms-transform: translate(2px,2px); z-index:2}
+.game-screen-card-container .card-three{transform: translate(2px,2px); -webkit-transform: translate(2px,2px); -ms-transform: translate(2px,2px); z-index:3}

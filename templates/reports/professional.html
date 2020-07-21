@@ -1,0 +1,348 @@
+<html>
+<head>
+<style>
+ @font-face {
+     font-family: 'PT Sans';
+	src: url('static/font/PTS55F_W.eot'); 
+	  src: local('PT Sans'), url('static/font/PTS55F_W.eot?#iefix') format('embedded-opentype'), url('static/font/PTS55F_W.woff') format('woff'),url('static/font/PTS55F_W.ttf') format('truetype'), url('static/font/PTS55F_W.svg#PTSans-Regular') format('svg');
+ }
+ @page {
+     size: 215.9mm 279.4mm;
+     margin: 12.7mm;
+     padding: 0;
+     margin-bottom:25.5mm;
+     padding-bottom: 0;
+     @bottom-right {
+         color: grey;
+         font-size: 12px;
+         font-family: 'PT Sans';
+         content: "Page " counter(page);
+     }
+ }
+
+ @media print {
+     footer {
+         position: fixed;
+         bottom: -17.5mm;
+         width: 100%;
+     }
+
+     p {
+         page-break-inside: avoid;
+     }
+ }
+
+ body {
+     font-family: PT Sans;
+     font-size: 15px;
+     margin: 0;
+     padding: 0;
+ }
+
+ table {
+     page-break-inside:avoid;
+ }
+
+ /*.page-fixed {
+     margin: 0;
+     padding: 0;
+     width: 185.9mm;
+     height: 219.4mm;
+     page-break-after: always;
+ }*/
+
+ //.page-fluid {
+ //    page-break-inside: auto;
+ //    border: 1px solid black;
+ //    height: 100%;
+// }
+
+ .habitude-table-row th {
+     padding: 8px;
+     font-weight: 900;
+ }
+
+ .habitude-table-row td {
+     padding: 8px;
+     font-weight: 900;
+ }
+
+ .se-habitude-column {
+     background-color: #697683;
+ }
+
+ .se-secondary-column {
+     background-color: #dde2e7;
+ }
+
+ .pl-habitude-column {
+     background-color: #234092;
+ }
+
+ .pl-secondary-column {
+     background-color: #bccdfd;
+ }
+
+ .sp-habitude-column {
+     background-color: #ee0019;
+ }
+
+ .sp-secondary-column {
+     background-color: #ffc8ce;
+ }
+
+ .st-habitude-column {
+     background-color: #a13a93;
+ }
+
+ .st-secondary-column {
+     background-color: #fdc7f5;
+ }
+
+ .gi-habitude-column {
+     background-color: #4ea812;
+ }
+
+ .gi-secondary-column {
+     background-color: #c9f3ad;
+ }
+
+ .ca-habitude-column {
+     background-color: #e1b901;
+ }
+
+ .ca-secondary-column {
+     background-color: #fbf1b0;
+ }
+
+ .total-habitude-column {
+     background-color: #d5d5d5;
+     border-bottom: solid #c5c5c5 3px;
+ }
+
+ .statement-row p {
+     margin: 0;
+     padding: 0;
+ }
+
+ .category-table th {
+     border-top-left-radius: 9px;
+     border-top-right-radius: 9px;
+ }
+
+ .category-table tr:last-child td:first-child {
+     border-bottom-left-radius: 9px;
+ }
+
+ .category-table tr:last-child td:last-child {
+     border-bottom-right-radius: 9px;
+ }
+
+ .category-table tr th {
+     padding: 5px;
+ }
+
+ .category-table tr td {
+     padding: 5px;
+ }
+
+</style>
+</head>
+<body>
+    <div class="page-fixed">
+        <!-- <hr style="position:relative;top:885px;"> -->
+        <!-- BEGIN HEADER -->
+        <div style="height: 70px; border-bottom: 1px solid #1e3d93">
+            <img style="float: left; width: 132px;" src="static/img/logo-onwhite.png">
+            <div style="float: left; border-left: 1px solid #d1d1d1; margin-left: 20px; padding-left: 20px; height: 58px; padding-top: 3px;">
+                <p style="font-size: 10px; color:#1e3d93; margin:0; padding:0;">PROFESSIONAL REPORT FOR:</p>
+                <p style="margin:0; padding: 0; margin-top: 3px;">{{game.player.name}}</p>
+                <p style="margin: 0; padding: 0; margin-top: 3px; font-size: 12px; color: #6b6b6b">{{game.last_activity_date | date:"F j, Y"}}</p>
+            </div>
+            {% if game.owner.report_branding and game.owner.branding.cover_image_url %}
+            <div style="height: 60px; float: right; border-bottom: 3px solid #1e3d93; margin-left: 10px; padding-top: 8px;">
+                <img style="height: 44px;" src="{{game.owner.branding.cover_image_url}}">
+            </div>
+            {% endif %}
+            <div style="float: right; border-left: 1px solid #d1d1d1; margin-left: 20px; padding-left: 20px; height: 58px; padding-top: 3px;">
+                <p style="margin: 0; padding: 0; margin-top: 13px; font-size: 12px; color: #6b6b6b; text-align: right">Prepared for:</p>
+                <p style="margin:0; padding: 0; margin-top: 3px; text-align: right">{{game.owner.name}}</p>
+            </div>
+        </div>
+        <!-- END HEADER -->
+        <!-- BEGIN TABLE -->
+        <table cellspacing="0" cellpadding="0" style="border:none;border-collapse:collapse;margin-top:20px;">
+            <tr style="font-size: 12px;" class="habitude-table-row">
+                <th style="padding:0;margin:0;"><div style="height:22px;margin-left:1em;width: 250px; border-top-left-radius: 6px; border-top-right-radius: 6px; background-color: #383838; color: #fff; padding-top: 8px;padding-left:1em;padding-bottom:0;">MONEY HABITUDE</div></th>
+                <th style="width: 150px; border-top-left-radius: 6px; border-top-right-radius: 6px; background-color: #383838; color: #fff;"><center>THAT'S ME (Strength)</center></th>
+                <th style="width: 50%; border-top-left-radius: 6px; border-top-right-radius: 6px; background-color: #383838; color: #fff"><center>SOMETIMES ME</center></th>
+                <th style="width: 50%; border-top-left-radius: 6px; border-top-right-radius: 6px; background-color: #383838; color: #fff"><center>NOT ME</center></th>
+                <th></th>
+            </tr>
+            {% for statement in statement_distribution %}
+            <tr class="habitude-table-row">
+                <td style="color: white;border-top-left-radius:6px;border-bottom-left-radius:6px;padding-left:1.6em;" class="{{statement.0}}-habitude-column">{{statement.2}}</td>
+                <td class="{{statement.0}}-secondary-column">
+                    <span style="margin-left:20px;">
+                    {{statement.1.me}}
+                    </span>
+                    <span style="font-weight: normal">
+                        {% if statement.1.me >= 4 %}
+                        (Dominant)
+                        {% elif statement.1.me >= 1%}
+                        (Using)
+                        {% else %}
+                        (Not using)
+                        {% endif %}
+                    </span>
+                </td>
+                <td style="text-align:center" class="{{statement.0}}-secondary-column">{{statement.1.some}}</td>
+                <td style="text-align:center" class="{{statement.0}}-secondary-column">{{statement.1.not}}</td>
+                <td class="{{statement.0}}-habitude-column" style="border-top-right-radius:6px; border-bottom-right-radius:6px;">&nbsp;</td>
+            </tr>
+            {% endfor %}
+            <tr class="habitude-table-row">
+                <td></td>
+                <td class="total-habitude-column"><span style="margin-left:20px;">{{ total_counts.me}}</span></td>
+                <td style="text-align:center" class="total-habitude-column">{{ total_counts.some}}</td>
+                <td style="text-align:center" class="total-habitude-column">{{ total_counts.not}}</td>
+            </tr>
+        </table>
+        <!-- END TABLE -->
+        <hr>
+        <!-- Begin pie chart legend -->
+        <center><table style="width: 90%">
+            <tr>
+                {% for category in statement_distribution %}
+                <td style="text-align:right;"><div style="display:inline-block;width:0.5em;height:0.5em;" class="{{category.0}}-habitude-column"></div> <span style="font-size:0.75em"><strong>{{category.2}}</strong></span></td>
+                {% endfor %}
+            </tr>
+        </table></center>
+        <!-- End pie chart legend -->
+        <!-- Begin pie charts -->
+        <div style="width:100%;height:300px;overflow:hidden;">
+            <div style="display:inline-block;width:50%">
+                <center>
+                    {% if has.me %}
+                    <img style="width:60%;height:60%;position:relative;" src="data:image/png;base64,{{charts.thatsme}}" alt="chart.png">
+                    <p style="text-align:center;font-size:0.75em;position:relative;top:-33px;z-index:1000">That's Me</p>
+                    {% endif %}
+                </center>
+                <center>
+                    <div style="position:relative;top:-48px;">
+                        <div style="display:inline-block;width:49%">
+                            {% if has.some %}
+                            <img style="width:90%;height:90%;margin-bottom:-30px;" src="data:image/png;base64,{{charts.someme}}" alt="chart.png">
+                            <p style="text-align:center;font-size:0.75em;position:relative;">Sometimes Me</p>
+                            {% endif %}
+                        </div>
+                        <div style="display:inline-block;width:49%;">
+                            {% if has.not %}
+                            <img style="width:90%;height:90%;margin-bottom:-30px;" src="data:image/png;base64,{{charts.notme}}" alt="chart.png">
+                            <p style="text-align:center;font-size:0.75em;position:relative;">Not Me</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </center>
+            </div>
+            <div style="display:inline-block;width:49%;">
+                {% for chart in category_charts %}
+                <div style="display:inline-block;width:100px;height:100px;overflow:hidden;//border:1px solid black">
+                    <img style="top:-19px;left:-35px;height:125px;position:relative;" src="data:image/png;base64,{{chart}}">
+                </div>
+                {% endfor %}
+                <div style="padding-left:90px;">
+                    <div>
+                        {% for color in swatch.0 %}
+                        <div style="position:relative;top:2px;display:inline-block;width:.75em;height:.75em;background-color:{{color}}"></div>
+                        {% endfor %}
+                        <span style="font-size:.75em">That's Me</span>
+                    </div>
+                    <div>
+                        {% for color in swatch.1 %}
+                        <div style="position:relative;top:2px;display:inline-block;width:.75em;height:.75em;background-color:{{color}}"></div>
+                        {% endfor %}
+                        <span style="font-size:.75em">Sometimes Me</span>
+                    </div>
+                    <div>
+                        {% for color in swatch.2 %}
+                        <div style="position:relative;top:2px;display:inline-block;width:.75em;height:.75em;background-color:{{color}}"></div>
+                        {% endfor %}
+                        <span style="font-size:.75em">Not Me</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End pie charts -->
+        <hr>
+        <!-- Begin notes -->
+        <p><strong>NOTES:</strong></p>
+        <!-- End notes -->
+    </div>
+    <!-- Begin that's me -->
+    {% if has.me %}
+            <h1 style="text-align:center;">That's Me</h1>
+        {% for card_result in card_results %}
+        {% if card_result.2.0 %}
+        <table style="border-spacing:0;border: 1px solid {{card_result.3.0}};border-radius:10px;width:100%;margin-bottom: 10px;table-layout:fixed;" class="category-table">
+            <tr style="color:white;background-color:{{card_result.3.0}};">
+                <th style="border-top-right-radius:0;"><img src="static/img/reports/{{card_result.0}}-card.png" style="height:16px;position:relative;top:2px;"> {{ card_result.0 }}: {{ card_result.1 }}</th><th style="width:20px;text-align:right;border-top-left-radius:0;"><span style="display:inline-block;float:right;background-color:white;color:{{card_result.3.0}};border-radius:50%;font-size:15px;width:20px;height:20px;text-align:center;">{{ card_result.2.0 | length }}</span></th>
+            </tr>
+            {% for card in card_result.2.0 %}
+            <tr>
+                <td colspan="2" style="{% if forloop.counter|divisibleby:2 %}background-color:{{card_result.3.2}}{% else %}{% endif %};" class="statement-row">{{ card | safe }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+        {% endfor %}
+    {% endif %}
+    <!-- End that's me -->
+    <!-- Begin sometimes -->
+    {% if has.some %}
+            <h1 style="text-align:center;">Sometimes Me</h1>
+        {% for card_result in card_results %}
+        {% if card_result.2.1 %}
+        <table cellspacing="0" cellpadding="0" style="border-spacing:0;border: 1px solid {{card_result.3.0}};border-radius:10px;width:100%;margin-bottom: 10px;table-layout:fixed;" class="category-table">
+            <tr style="color:white;background-color:{{card_result.3.0}};">
+                <th style="border-top-right-radius:0;"><img src="static/img/reports/{{card_result.0}}-card.png" style="height:16px;position:relative;top:2px;"> {{ card_result.0 }}: {{ card_result.1 }}<th style="width:20px;text-align:right;border-top-left-radius:0;"><span style="display:inline-block;float:right;background-color:white;color:{{card_result.3.0}};border-radius:50%;font-size:15px;width:20px;height:20px;text-align:center;">{{ card_result.2.1 | length }}</span></th>
+            </tr>
+            {% for card in card_result.2.1 %}
+            <tr>
+                <td colspan="2" style="{% if forloop.counter|divisibleby:2 %}background-color:{{card_result.3.2}}{% else %}{% endif %};" class="statement-row">{{ card | safe }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+        {% endfor %}
+    {% endif %}
+    <!-- End sometimes -->
+    <!-- Begin not me -->
+    {% if has.not %}
+            <h1 style="text-align:center;">Not Me</h1>
+        {% for card_result in card_results %}
+        {% if card_result.2.2 %}
+        <table cellspacing="0" cellpadding="0" style="border-spacing:0;border: 1px solid {{card_result.3.0}};border-radius:10px;width:100%;margin-bottom: 10px;table-layout:fixed;" class="category-table">
+            <tr style="color:white;background-color:{{card_result.3.0}};">
+                <th style="border-top-right-radius:0;"><img src="static/img/reports/{{card_result.0}}-card.png" style="height:16px;position:relative;top:2px;"> {{ card_result.0 }}: {{ card_result.1 }}<th style="width:20px;text-align:right;border-top-left-radius:0;"><span style="display:inline-block;float:right;background-color:white;color:{{card_result.3.0}};border-radius:50%;font-size:15px;width:20px;height:20px;text-align:center;">{{ card_result.2.2 | length }}</span></th>
+            </tr>
+            {% for card in card_result.2.2 %}
+            <tr>
+                <td colspan="2" style="{% if forloop.counter|divisibleby:2 %}background-color:{{card_result.3.2}}{% else %}{% endif %};" class="statement-row">{{ card | safe }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+        {% endfor %}
+    {% endif %}
+    <!-- End not me -->
+    <!-- Begin footer -->
+    <footer>
+        <div style="width:250px;border:1px solid black;"></div>
+        <div style="border-top:1px solid black;width:100%">
+            <p style="color:grey;font-size:12px;">&copy; LifeWise Strategies, LLP. &nbsp;Money Habitudes&reg; is a registered trademark. &nbsp;|&nbsp; www.moneyhabitudes.com</p>
+        </div>
+    </footer>
+    <!-- End footer -->
+</body>
+</html>

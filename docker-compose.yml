@@ -1,0 +1,36 @@
+version: '3.1'
+
+services:
+  app:
+    container_name: mho-app
+    build: .
+    command: gunicorn moneyhabitudes.wsgi:application -w 16 --bind 0.0.0.0:8000
+    restart: unless-stopped
+    volumes:
+      - static:/mho/static
+    depends_on:
+      - db
+    environment:
+      - MHO_DEBUG=${MHO_DEBUG:-False}
+
+  db:
+    container_name: mho-db
+    image: postgres:11.2
+    restart: unless-stopped
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  proxy:
+    container_name: mho-proxy
+    build: ./nginx
+    restart: unless-stopped
+    volumes:
+      - static:/mho/static:ro
+    ports:
+      - 8000:80
+    depends_on:
+      - app
+
+volumes:
+  static:
+  db:

@@ -1,0 +1,13 @@
+Welcome to Money Habitudes!
+
+{{request.user.account.name}} has sent you a link to play Money Habitudes
+Online, the quick and easy way to understand your money personality.
+
+Click the link below to get started. It will take you 5-10 minutes and you will
+see your results and can access your full report with the link on the last
+screen.
+
+{{data.share_url}}
+
+Alternate option: You may also visit {{data.host_url}} and enter code
+{{data.share_code}}.

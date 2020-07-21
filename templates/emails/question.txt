@@ -1,0 +1,21 @@
+{% autoescape off %}
+You received a question on {{data.url}}
+
+Name: {{data.name}}
+
+Email: {{data.email}}
+
+{% if data.trial %}
+Send me a trial
+
+Organization: {{data.org_name}}
+
+Phone number: {{data.phone}}
+
+{% else %}No trial requested
+{% endif %}
+
+Message:
+
+{{data.message}}
+{% endautoescape %}

@@ -1,0 +1,118 @@
+{% load static %}
+{% load compress %}
+{% load settings %}
+
+<!doctype html>
+<html lang="en" ng-app="MoneyHabitudesApp">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="title" content="Money Habitudes Online | money personality assessment"/>
+        <meta name="description" content="Trusted by financial planners, therapists & financial educators, our online money personality assessment is easy & effective. Great insights and conversations!"/>
+        <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no"/>
+        <meta http-equiv="Content-Type" content="text/html, charset=utf-8"/>
+        <title>Money Habitudes Online</title>
+        <link rel="shortcut icon" href="/static/design/images/favicon.png" />
+        {% compress css %}
+        <link rel="stylesheet" href="{% static 'vendor/jqplot/1.0.9/jquery.jqplot.css' %}" />
+        <link rel="stylesheet" href="{% static 'vendor/bootstrap/3.3.7/css/bootstrap.css' %}" />
+        <link rel="stylesheet" href="{% static 'vendor/angular-ui-grid/4.0.6/ui-grid.css' %}" />
+        <link rel="stylesheet" href="{% static 'design/css/style.css' %}" />
+        <link rel="stylesheet" href="{% static 'design/css/responsive.css' %}" />
+        <link rel="stylesheet" href="{% static 'vendor/animate/3.5.2/animate.css' %}" />
+        <link rel="stylesheet" href="{% static 'design/css/font-awesome.css' %}" />
+        <link rel="stylesheet" href="{% static 'components/app.css' %}" />
+        <link rel="stylesheet" href="{% static 'components/states/load/load.css' %}" />
+        <link rel="stylesheet" href="{% static 'components/directives/play/play.css' %}" />
+        {% endcompress %}
+
+        {% if request.language == 'en_US' %}{% compress js %}<script src="{% static 'language/en_US.js' %}"></script>{% endcompress %}
+        {% elif request.language == 'de_DE' %}{% compress js %}<script src="{% static 'language/de_DE.js' %}"></script>{% endcompress %}
+        {% elif request.language == 'es_ES' %}{% compress js %}<script src="{% static 'language/es_ES.js' %}"></script>{% endcompress %}
+        {% elif request.language == 'zz_ZZ' %}{% compress js %}<script src="{% static 'language/zz_ZZ.js' %}"></script>{% endcompress %}
+        {% else %}{% compress js %}<script src="{% static 'language/en_US.js' %}"></script>{% endcompress %}
+        {% endif %}
+
+        {% compress js %}
+        <script type="text/javascript">
+         var STRIPE_PUBLISHABLE_KEY = "{% settings_value 'STRIPE_PUBLISHABLE_KEY' %}";
+        </script>
+        <script src="{% static 'vendor/jquery/3.2.1/jquery.js' %}"></script>
+        <script src="{% static 'vendor/jqplot/1.0.9/jquery.jqplot.js' %}"></script>
+        <script src="{% static 'vendor/jqplot/1.0.9/plugins/jqplot.pieRenderer.js' %}"></script>
+        <script src="{% static 'vendor/jqplot/1.0.9/excanvas.js' %}"></script>
+        <script src="{% static 'vendor/wow/1.2.2/wow.js' %}"></script>
+        <script src="{% static 'vendor/angular/1.6.5/angular.js' %}"></script>
+        <script src="{% static 'vendor/angular/1.6.5/angular-animate.js' %}"></script>
+        <script src="{% static 'vendor/angular/1.6.5/angular-cookies.js' %}"></script>
+        <script src="{% static 'vendor/angular-ui-router/1.0.1/angular-ui-router.js' %}"></script>
+        <script src="{% static 'vendor/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.js' %}"></script>
+        <script src="{% static 'vendor/angular-ui-grid/4.0.6/ui-grid.js' %}"></script>
+        <script src="{% static 'vendor/angular-stripe-checkout/5.1.0/angular-stripe-checkout.js' %}"></script>
+        <script src="{% static 'vendor/chartjs/2.6.0/Chart.min.js' %}"></script>
+        <script src="{% static 'vendor/angular-chart/1.1.1/angular-chart.min.js' %}"></script>
+        <script src="{% static 'vendor/showdown/1.7.1/showdown.js' %}"></script>
+        <script src="{% static 'components/build.js' %}"></script>
+        <script src="{% static 'components/extensions.js' %}"></script>
+        <script src="{% static 'components/app.js' %}"></script>
+        <script src="{% static 'components/resolve.js' %}"></script>
+        <script src="{% static 'components/services/user.js' %}"></script>
+        <script src="{% static 'components/services/message.js' %}"></script>
+        <script src="{% static 'components/services/language.js' %}"></script>
+        <script src="{% static 'components/services/game.js' %}"></script>
+        <script src="{% static 'components/services/resource.js' %}"></script>
+        <script src="{% static 'components/services/share.js' %}"></script>
+        <script src="{% static 'components/services/order.js' %}"></script>
+        <script src="{% static 'components/services/feedback.js' %}"></script>
+        <script src="{% static 'components/states/start/start.js' %}"></script>
+        <script src="{% static 'components/states/signup/signup.js' %}"></script>
+        <script src="{% static 'components/states/login/login.js' %}"></script>
+        <script src="{% static 'components/states/logout/logout.js' %}"></script>
+        <script src="{% static 'components/states/dashboard/dashboard.js' %}"></script>
+        <script src="{% static 'components/states/pricing/pricing.js' %}"></script>
+        <script src="{% static 'components/states/codes/codes.js' %}"></script>
+        <script src="{% static 'components/states/games/games.js' %}"></script>
+        <script src="{% static 'components/states/load/load.js' %}"></script>
+        <script src="{% static 'components/states/settings/settings.js' %}"></script>
+        <script src="{% static 'components/states/subscription/subscription.js' %}"></script>
+        <script src="{% static 'components/states/password/password.js' %}"></script>
+        <script src="{% static 'components/directives/base/base.js' %}"></script>
+        <script src="{% static 'components/directives/navbar/navbar.js' %}"></script>
+        <script src="{% static 'components/directives/messagebar/messagebar.js' %}"></script>
+        <script src="{% static 'components/directives/splash/splash.js' %}"></script>
+        <script src="{% static 'components/directives/banner/banner.js' %}"></script>
+        <script src="{% static 'components/directives/footer/footer.js' %}"></script>
+        <script src="{% static 'components/directives/page-title/page-title.js' %}"></script>
+        <script src="{% static 'components/directives/pricing-table/pricing-table.js' %}"></script>
+        <script src="{% static 'components/directives/subscription-alert/subscription-alert.js' %}"></script>
+        <script src="{% static 'components/directives/distribute-games/distribute-games.js' %}"></script>
+        <script src="{% static 'components/directives/game-history-table/game-history-table.js' %}"></script>
+        <script src="{% static 'components/directives/pager/pager.js' %}"></script>
+        <script src="{% static 'components/directives/pie-chart/pie-chart.js' %}"></script>
+        <script src="{% static 'components/directives/play/play.js' %}"></script>
+        <script src="{% static 'components/directives/results/results.js' %}"></script>
+        <script src="{% static 'components/directives/settings-general/settings-general.js' %}"></script>
+        <script src="{% static 'components/directives/settings-codes/settings-codes.js' %}"></script>
+        <script src="{% static 'components/directives/settings-branding/settings-branding.js' %}"></script>
+        <script src="{% static 'components/directives/loading/loading.js' %}"></script>
+        <script src="{% static 'components/directives/usage-video/usage-video.js' %}"></script>
+        <script src="{% static 'components/directives/tutorial/tutorial.js' %}"></script>
+        <script>
+         (function (i, s, o, g, r, a, m) {
+             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                 (i[r].q = i[r].q || []).push(arguments)
+             }, i[r].l = 1 * new Date(); a = s.createElement(o),
+             m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+         })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        </script>
+        {% endcompress %}
+    </head>
+    {% if request.is_IE %}
+    <div class="alert alert-danger" role="alert">
+        This site doesn’t support the Internet Explorer browser. Instead, please
+        use a modern browser, such as Chrome, Firefox, Edge, or Safari.
+    </div>
+    {% endif %}
+    <body ng-app="MoneyHabitudesApp">
+        <div ui-view></div>
+    </body>
+</html>

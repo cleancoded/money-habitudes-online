@@ -1,0 +1,10 @@
+Money Habitudes
+===============
+
+Hi {{ account.name }}
+
+{% block lead %}{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block action %}{% endblock %}

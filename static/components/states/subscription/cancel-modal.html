@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ t.web.s.subscription.end.title }}</h4>
+</div>
+<div class="modal-body">
+    <p>{{ t.web.s.subscription.end.p1 }} <b>{{ me.subscription.active_until | date }}</b>.</p>
+    <p>{{ t.web.s.subscription.end.p2 }}</p>
+    <p>{{ t.web.s.subscription.end.p3 }}</p>
+</div>
+<div class="modal-footer">
+    <span ng-hide="working">
+    <a href class="btn-border" ng-click="close_cancel_modal();">{{ t.web.subscription.end.cancel }}</a>
+    <button class="btn" ng-click="unsubscribe();">{{ t.web.s.subscription.end.end }}</button>
+    </span>
+    <button ng-show="working" class="btn" disabled>{{ t.web.s.subscription.working }} <mh-loading></mh-loading></button>
+</div>

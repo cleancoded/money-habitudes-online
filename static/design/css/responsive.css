@@ -1,0 +1,168 @@
+@media only screen and (max-width:1199px){
+.header-box .btn{font-size:12px}
+.header-box p{font-size:14px}
+.header-box .play-btn{padding-left:12px; padding-right:12px}
+.header-box .txtbox{width:210px}
+.banner-wrap{height:510px}
+.banner-pic {margin-top:10px}
+.banner-pic img{max-width:100%}
+.banner-txt h2{font-size:32px; line-height:normal; margin-bottom:10px}
+.banner-txt p{font-size:20px; line-height:26px; margin-bottom:30px}
+.comment-box p{height:110px}
+.branding-area .pic img{max-width:300px}
+.branding-area.after-login .pic img{max-width:300px}
+.subscription-planbox .plan-name{font-size:20px}
+.subscription-planbox .plan-desc{font-size:14px; line-height:18px}
+.subscription-branding-options .branding-box .iconbox{width:125px}
+.subscription-branding-options .branding-box .txtbox{padding:25px 20px}
+.subscription-branding-options .branding-box .txtbox .name{font-size:20px}
+.subscription-branding-options .branding-box .txtbox .txt{font-size:15px; line-height:20px}
+}
+
+@media only screen and (max-width:991px){
+.banner-txt .btn{font-size:16px; padding:15px 30px}
+.header-box{display:none}
+.header-box.referral-box{display:block; border:0; padding-right:15px}
+.header-box p{font-size:14px}
+.header-box .login-btn, .header-box .signup-btn{padding-left:7px; padding-right:7px}
+.header-box .play-btn{padding-left:12px; padding-right:12px}
+.banner-wrap{height:450px}
+.banner-pic {margin-top:50px}
+.banner-txt h2{font-size:28px}
+.banner-txt p{font-size:16px; line-height:22px; margin-bottom:20px}
+section{padding:50px 0 55px}
+.section-heading{font-size:32px}
+.comment-box p{height:140px}
+.comment-box .logo img{height:40px}
+.stnpricelist li a.learnmore-btn, .propricelist li a.learnmore-btn, .propluspricelist li a.learnmore-btn, .premiumpricelist li a.learnmore-btn{padding-left:2px; padding-right:2px}
+.tbl-features .feature-column{display:none}
+.tbl-features .item li{display:inline}
+.tbl-features .item li:after {content: "\a"; white-space: pre; line-height:24px}
+.signup-login-txt-col, .signup-login-txt-col-content{display:block}
+.branding-area{text-align:center}
+.branding-area .pic{float:none; margin-right:0}
+.branding-area .txt{margin-top:15px}
+.nav-tab ul li a{font-size:15px; padding:14px 14px 0; height:45px}
+.subscription-planbox .plan-name{font-size:24px}
+.subscription-planbox .plan-desc{font-size:15px; line-height:20px}
+.subscription-planbox:nth-child(1), .subscription-planbox:nth-child(2){margin-bottom:25px}
+.subscription-branding-options .branding-box .iconbox{width:100px}
+.subscription-branding-options .branding-box .txtbox{padding:20px}
+.subscription-branding-options .branding-box .txtbox .name{font-size:18px}
+.subscription-branding-options .branding-box .price{font-size:32px}
+.subscription-branding-options .branding-box .price .subtxt{font-size:14px}
+}
+
+@media only screen and (max-width:767px){
+.btn, .btn-border{padding:14px 25px}
+.xs-margn-bot{margin-bottom:15px}
+.display-xs-block{display:block}
+.btn-row-multiple-btns .btn.display-xs-block, .btn-row-multiple-btns .btn-border.display-xs-block{margin-left:0; margin-right:0}
+.header-box p{margin:0}
+.header-box.referral-box{padding-left:0}
+.header-box .txtbox{width:195px}
+.header-box .form-control{width:125px; font-size:14px}
+.top-header p img{width:15px; margin-right:4px}
+.top-header p{font-size:12px; font-weight:400}
+.top-header p:nth-child(2){margin-left:3px}
+.top-header a.login-btn, .top-header a.signup-btn{font-size:12px; font-weight:400}
+.top-header a.signup-btn{margin-left:8px}
+.banner-wrap{height:740px}
+.banner-pic{width:450px; position:absolute; left:50%; margin-left:-225px; bottom:60px; text-align:center; margin-top:0}
+.banner-wrap .flt-rgt{float:none}
+.banner-txt{margin-left:0; text-align:center}
+.banner-txt h2{text-align:center}
+.banner-txt p{text-align:center; margin-top:10px; margin-bottom:30px}
+.section-heading{font-size:30px}
+.section-subheading{font-size:18px; margin-bottom:35px}
+.in-contnum{margin-top:0}
+.social-icon{text-align:center}
+.comment-box{margin-bottom:50px}
+.comment-box p{height:auto}
+.comment-box .logo img{height:auto}
+footer{text-align:center}
+footer p span{margin-top:14px; display:block}
+.price li{height:auto !important}
+.addon-wrap{float:left; width:100%}
+.addon-wrap .heading{margin-bottom:40px}
+.addon-box{margin-bottom:40px}
+.addon-box img{width:70px}
+.disp-tbl .disp-tbl-cell{display:block}
+.txt-col-lft{padding-right:0; padding-bottom:30px}
+.txt-col-rgt{padding-left:0; padding-top:30px}
+.tbl-features{margin-bottom:0}
+.tbl-features .stnpricelist, .tbl-features .propricelist, .tbl-features .propluspricelist,.tbl-features .premiumpricelist{margin-bottom:50px}
+.tbl-features .propluspricelist{margin-top:30px}
+.tbl-features .propluspricelist .item:last-child{border-bottom:0}
+.tbl-features .item p{font-weight:400; line-height:normal; color:#5c5b5b}
+.tbl-features .item h5{font-weight:500}
+.nav-tab{border-bottom:none}
+.nav-tab ul{display:none}
+.nav-tab select{display:block}
+.content-box{padding-left:20px; padding-right:20px}
+.subscription-planbox{height:auto}
+.subscription-type:first-child{margin-bottom:10px}
+.subscription-branding-options .branding-box:first-child{margin-bottom:20px}
+}
+
+@media only screen and (max-width:650px){
+.banner-pic{width:350px; margin-left:-175px}
+}
+
+@media only screen and (max-width:480px){
+.header-box .form-control{width:110px; padding-left:5px; padding-right:5px}
+.banner-wrap{padding-top:20px}
+.banner-txt h2{font-size:28px}
+.banner-txt p{margin-bottom:10px}
+.header-box .txtbox{width:160px}
+.header-box .play-btn{padding-left:5px; padding-right:5px}
+.comment-box .logo img{height:40px}
+.game-screen-card-container{width:250px; height:350px}
+.game-screen-card-container .card .txt{font-size:15px; font-weight:400; line-height:24px; padding-left:25px; padding-right:25px}
+.game-screen-btn-container{width:280px; padding-top:20px}
+.game-screen-btn-container .btn-col{padding-left:8px; padding-right:8px}
+.btn-game-play .icon-outer{width:60px; height:60px}
+.btn-game-play .icon{width:60px; height:60px}
+.btn-game-play .icon i.fa{font-size:28px; line-height:54px}
+.btn-game-play .txt{font-size:13px; letter-spacing:normal}
+.btn-game-play:active .icon{width:52px; height:52px}
+.btn-game-play:active .icon i.fa{font-size:24px; line-height:46px}
+.btn-game-play.btn-prev-next{width:54px; height:54px}
+.btn-game-play.btn-prev-next i.fa{font-size:24px; line-height:54px}
+.btn-game-play.btn-prev-next.active:active{width:50px; height:50px; margin-top:2px}
+.btn-game-play.btn-prev-next.active:active i.fa{font-size:22px; line-height:50px}
+.stamp{width:80px; height:65px}
+.game-screen-card-container .card .txt .heading{font-size:18px}
+.txt-piletype{width:95px; height:32px; margin-left:6px; margin-right:6px}
+.pie-chart-denote-list td{padding-left:5px; padding-right:5px}
+.subscription-branding-options .branding-box .iconbox{width:75px}
+}
+
+
+@media only screen and (max-width:320px){
+.game-screen-card-container{width:210px; height:295px; margin-top:30px}
+.game-screen-card-container .card .txt{font-size:14px; line-height:20px; padding-left:20px; padding-right:20px}
+.game-screen-btn-container{width:240px; padding-top:15px}
+.game-screen-btn-container .btn-col{padding-left:4px; padding-right:4px}
+.btn-game-play .icon-outer{width:50px; height:50px}
+.btn-game-play .icon{width:50px; height:50px}
+.btn-game-play .icon i.fa{font-size:22px; line-height:44px}
+.btn-game-play .txt{font-size:12px}
+.btn-game-play:active .icon{width:42px; height:42px}
+.btn-game-play:active .icon i.fa{font-size:18px; line-height:38px}
+.btn-game-play.btn-back{width:36px; height:36px}
+.btn-game-play.btn-back i.fa{font-size:16px; line-height:36px}
+.btn-game-play.btn-back.active:active{width:34px; height:34px}
+.btn-game-play.btn-back.active:active i.fa{font-size:14px; line-height:34px}
+.stamp{width:70px; height:60px}
+.btn-game-play.btn-prev-next{width:44px; height:44px}
+.btn-game-play.btn-prev-next i.fa{font-size:20px; line-height:44px}
+.btn-game-play.btn-prev-next.active:active{width:40px; height:40px}
+.btn-game-play.btn-prev-next.active:active i.fa{font-size:18px; line-height:40px}
+.pagination > li > a, .pagination > li > span{padding:3px 8px; font-size:16px}
+.game-screen-card-container .card .txt .heading{font-size:17px}
+.txt-piletype{width:83px; height:27px}
+.pie-chart-denote-list span.denote{width:10px; height:10px}
+.pie-chart-denote-list{font-size:12px; font-weight:400}
+.pie-chart-denote-list span.denote{margin-right:4px}
+}

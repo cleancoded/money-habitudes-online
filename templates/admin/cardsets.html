@@ -1,0 +1,25 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div class="column row">
+    <h1>Cardsets</h1>
+</div>
+<div class="column row">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cardset in cardsets %}
+            <tr>
+                <td><a href="/admin/cardsets/{{ cardset.id }}/">{{ cardset.data.name }}</a></td>
+                <td>{{ cardset.data.description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

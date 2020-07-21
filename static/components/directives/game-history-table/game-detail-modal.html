@@ -1,0 +1,66 @@
+<div class="modal-header">
+    <button ng-click="close_detail();" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">{{ game_detail.player.name }}</h4>
+    <p>{{ game_detail.player.email }}</p>
+</div>
+<div ng-show="game_detail.completed" class="modal-body">
+    <p>{{ t.web.d.ght.detail.completed }} {{ game_detail.last_activity_date|date }}</p>
+    <mh-pie-chart data="game_detail" legend="true"></mh-pie-chart>
+</div>
+<div ng-init="confirm_revoke=false;" ng-hide="game_detail.completed || confirm_revoke" class="modal-footer">
+    <a class="btn btn-default" href ng-click="confirm_revoke=true;">{{ t.web.d.ght.detail.revoke_button }}</a>
+    <a class="btn btn-default" href ng-click="remind(game_detail.id);">{{ t.web.d.ght.detail.send_reminder_button }}</a>
+</div>
+<div ng-show="game_detail.completed" class="modal-footer">
+    <a class="btn btn-default" target="_blank" ui-sref="games({game_id: game_detail.id})">{{ t.web.d.ght.detail.quick_report_button }}</a>
+    <a ng-hide="game_detail.owner.id !== me.id && game_detail.player.id === me.id && game_detail.hide_player_reports" class="btn btn-default" target="_blank" ui-sref="load({path: game_detail.pdf_url})">{{ t.web.d.ght.detail.pdf_report_button }}</a>
+    <a class="btn btn-default" target ="_blank" ng-if="game_detail.owner.id === me.id && me.admin_reports" ui-sref="load({path: game_detail.professional_url})">{{ t.web.d.ght.detail.pro_report_button }}</a>
+</div>
+<div ng-show="!game_detail.completed && confirm_revoke" class="modal-footer">
+    <p style="text-align: left;">{{ t.web.d.ght.detail.confirm_delete }}</p>
+    <a class="btn btn-default" href ng-click="revoke(game_detail.id); confirm_revoke=false;">{{ t.web.d.ght.detail.revoke_button }}</a>
+    <a class="btn-border" href ng-click="confirm_revoke = false;">{{ t.web.d.ght.detail.cancel_button }}</a>
+</div>
+
+
+
+<!--
+<div ng-show="game_detail.completed">
+
+    <div class="column row">
+        <h3>{{ game_detail.player.name }}</h3>
+        <p><strong>{{ game_detail.player.email }}</strong></p>
+        <p>Game completed: {{ game_detail.date|date }}</p>
+    </div>
+    <hr>
+    <div class="column row">
+        <mh-pie-chart data="game_detail"></mh-pie-chart>
+        <hr>
+        <a class="button" ng-click="open_quick_report(game_detail)">Quick Report</a>
+        <a class="button" ng-if="game_detail.owner.id === me.id && me.admin_reports" ng-href="{{game_detail.professional_url}}" ng-click="close_detail()" target="_blank">Professional Report</a>
+        <a class="button" ng-href="{{game_detail.pdf_url}}" ng-click="close_detail()" target="_blank">User Report</a>
+    </div>
+</div>
+<div ng-show="!game_detail.completed && game_detail.player.id !== me.id">
+    <h3>{{game_detail.player.name}}</h3>
+    <p><strong>{{game_detail.player.email}}</strong></p>
+    <div class="column row" ng-show="game_detail.share.group">
+        <p>Code used on: {{game_detail.date|date}}</p>
+        <p>Code: {{game_detail.share.name}}</p>
+    </div>
+    <div class="column row" ng-show="!game_detail.share.group">
+        <p>Shared on: {{game_detail.share.created_date|date}}</p>
+        <hr>
+        <p><strong>Status: Pending</strong></p>
+    </div>
+</div>
+<div ng-show="!game_detail.completed && game_detail.player.id === me.id">
+    <div class="column row">
+        <h3>Continue playing</h3>
+        <button class="button" ng-click="continue_playing(game_detail)">Continue Playing</button>
+    </div>
+</div>
+<button ng-click="close_detail()" class="close-button" aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+</button>
+-->

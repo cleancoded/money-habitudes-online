@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-sm-5 col-sm-push-7 col-md-4 col-md-push-8">
+        <div ng-if="me.subscription" class="content-box settings-subscription-plan">
+            <div class="heading">{{ t.web.d.settings_general.subscription_title }}</div>
+            <div class="plan-name">{{ me.subscription.plan_name }}</div>
+            <div class="plan-date">
+                <div class="row" ng-show="me.subscription.active">
+                    <div class="lbl">{{ t.web.d.settings_general.renews_on }}</div>
+                    <div class="dt">{{ me.subscription.active_until | date }}</div>
+                </div>
+                <div class="row" ng-hide="me.subscription.active">
+                    <div class="lbl">{{ t.web.d.settings_general.expires_on }}</div>
+                    <div class="dt">{{ me.subscription.active_until | date }}</div>
+                </div>
+                <div ng-show="me.subscription && !me.subscription.active" class="row">
+                    <p><b>{{ t.web.d.settings_general.renewal_end }}</b></p>
+                </div>
+            </div>
+            <div class="usage">
+                <div class="txt">{{ t.web.d.settings_general.games_left }}<span class="val">{{ me.available_games }}</span></div>
+            </div>
+            <ul class="bullet">
+                <li ng-if="me.subscription.active"><a ui-sref="subscription" class="green">{{ t.web.d.settings_general.change_plan }}</a></li>
+                <li ng-if="!me.subscription.active"><a ui-sref="subscription" class="green">{{ t.web.d.settings_general.purchase_new }}</a></li>
+            </ul>
+        </div>
+        <div ng-if="me.subscription.active" class="content-box">
+            <div class="heading">{{ t.web.d.settings_general.payment_title }}</div>
+            <ul class="bullet">
+                <li ng-if="STRIPE_PUBLISHABLE_KEY">
+                    <a href
+                       class="green"
+                       stripe-checkout="change_payment"
+                       data-key="{{ STRIPE_PUBLISHABLE_KEY }}"
+                       data-name="{{ t.web.d.settings_general.update_payment_info_label }}"
+                       data-amount = 0
+                       data-zip-code=true
+                       data-billing-address=true
+                       data-email="{{ me.email }}"
+                       data-allow-remember-me="false"
+                    >
+                        {{ t.web.d.settings_general.change_billing_button }}
+                </a></li>
+                <li><a ui-sref="subscription({unsubscribe: true})" class="green">{{ t.web.d.settings_general.cancel_billing_button }}</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-7 col-sm-pull-5 col-md-8 col-md-pull-4">
+        <div class="content-box">
+            <div class="heading">{{ t.web.d.settings_general.user_info }}</div>
+            <form>
+                <div class="row">
+                    <div class="col-lg-8 col-md-10">
+                        <div class="form-group">
+                            <label>{{ t.web.d.settings_general.name }}</label>
+                            <input type="text" class="form-control" ng-model="change_name">
+                        </div>
+                        <div class="form-group">
+                            <label>{{ t.web.d.settings_general.email }}</label>
+                            <input type="text" class="form-control" ng-model="change_email">
+                        </div>
+                        <div class="form-group">
+                            <label>{{ t.web.d.settings_general.language }}</label>
+                            <select class="form-control" ng-model="language" ng-change="change_language();">
+                                <option ng-repeat="l in me.language_choices" value="{{ l[0] }}">{{ l[1] }}</option>
+                            </select>
+                        </div>
+                        <div ng-show="me.email !== ''" class="form-group">
+                            <label>{{ t.web.d.settings_general.old_pass }}</label>
+                            <input type="password" class="form-control" ng-model="original_password">
+                        </div>
+                        <div class="form-group">
+                            <label>{{ t.web.d.settings_general.new_pass }}</label>
+                            <input type="password" class="form-control" ng-model="new_password">
+                        </div>
+                        <div class="form-group">
+                            <label>{{ t.web.d.settings_general.retype_pass }}</label>
+                            <input type="password" class="form-control" ng-model="confirm_password">
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-row">
+                    <input type="submit" class="btn" value="{{ t.web.d.settings_general.update_button }}" ng-click="submit_changes();">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

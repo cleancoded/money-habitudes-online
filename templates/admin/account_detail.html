@@ -1,0 +1,334 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div class="column row">
+    <h1>Account information <small><a href data-toggle="modal" data-target="#detailModal">edit</a></small></h1>
+    <table style="border:none; border-collapse:separate;border-spacing:10px 0;">
+        <tr>
+            <td>Name</td>
+            <td>{{ account.name }}</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>{{ account.email }}</td>
+        </tr>
+        <tr>
+            <td>Type</td>
+            <td>{% if account.admin %}Admin{% else %}Player{% endif %}</td>
+        </tr>
+        <tr>
+            <td>General pool of games</td>
+            <td>{{ account.get_bonus_games_count }}</td>
+        </tr>
+        {% if account.stripe_customer_id %}
+        <tr>
+            <td>Stripe customer ID</td>
+            <td>{{ account.stripe_customer_id }}</td>
+        </tr>
+        {% endif %}
+        {% if account.admin %}
+        <tr>
+            <td>Usage</td>
+            <td>
+                {{ account.usage_stats.0 }}
+                /
+                {{ account.usage_stats.1 }}
+            </td>
+        <tr>
+            <td>Group code override</td>
+            <td>{{ account.group_code_override }}</td>
+        </tr>
+        <tr>
+            <td>Admin report override</td>
+            <td>{{ account.admin_report_override }}</td>
+        </tr>
+        <tr>
+            <td>Report branding</td>
+            <td>{{ account.report_branding }}</td>
+        </tr>
+        <tr>
+            <td>Site branding</td>
+            <td>{{ account.site_branding }}</td>
+        </tr>
+        <tr>
+            <td>Enforce share limits</td>
+            <td>{{ account.enforce_limits }}</td>
+        </tr>
+        <tr>
+            <td>Player pays</td>
+            <td>{{ account.player_pays }}</td>
+        </tr>
+        <tr>
+            <td>Anonymous clients</td>
+            <td>{{ account.anonymous_games }}</td>
+        </tr>
+        <tr>
+            <td>Show Next Steps</td>
+            <td>{{ account.show_next_steps }}</td>
+        </tr>
+        <tr>
+            <td>Extra languages</td>
+            <td>{{ account.extra_languages }}</td>
+        </tr>
+        {% if account.report_end %}
+        <tr>
+            <td>Custom report end</td>
+            <td><a href="/{{ account.report_end_url }}?{{ account.modified_date.toordinal }}">Report end</a></td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td>Hide player reports</td>
+            <td>{{ account.hide_player_reports }}</td>
+        </tr>
+        {% if account.hide_player_reports %}
+        <tr>
+            <td colspan="2">Player report alt message</td>
+        </tr>
+        <tr>
+            <td colspan="2"><pre>{{ account.player_report_alt_message }}</pre></td>
+        </tr>
+        {% endif %}
+        {% endif %}
+    </table>
+    <h2>Calculated capabilities</h2>
+    <table style="border:none; border-collapse:separate;border-spacing:10px 0;">
+        <tr>
+            <td>Available game credits</td>
+            <td>{{ account.total_games_available }}</td>
+        </tr>
+        <tr>
+            <td>Group codes</td>
+            <td>{{ capabilities.group_codes }}</td>
+        </tr>
+        <tr>
+            <td>Admin reports</td>
+            <td>{{ capabilities.admin_reports }}</td>
+        </tr>
+        <tr>
+            <td>Report branding</td>
+            <td>{{ capabilities.report_branding }}</td>
+        </tr>
+        <tr>
+            <td>Site branding</td>
+            <td>{{ capabilities.site_branding }}</td>
+        </tr>
+        {% if capabilities.subscription %}
+        <tr>
+            <td>Active subscription</td>
+            <td>{{ capabilities.subscription.active }}</td>
+        </tr>
+        <tr>
+            <td>Next renewal / active until</td>
+            <td>{{ capabilities.subscription.active_until }}</td>
+        </tr>
+        <tr>
+            <td>Stripe plan ID</td>
+            <td>{{ capabilities.subscription.stripe_plan_id }}</td>
+        </tr>
+        <tr>
+            <td>Interval</td>
+            <td>{{ capabilities.subscription.interval }}</td>
+        </tr>
+        {% endif %}
+    </table>
+</div>
+{% if subscriptions_preview %}
+<div class="column row">
+    <h1>Subscriptions</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Plan name 
+                </th>
+                <th>
+                    Start date
+                </th>
+                <th>
+                    Renewal or End date
+                </th>
+                <th>
+                    Active
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in subscriptions_preview %}
+            <tr>
+                <td>{{ s.stripe_plan_name }}</td>
+                <td>{{ s.created_date }}</td>
+                <td>{{ s.active_until }}</td>
+                <td>{{ s.active }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% if shares_preview %}
+<div class="column row">
+    <h1>Shares ({{ shares_preview.paginator.count }}) <small><a href="shares/">View all</a></small></h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Code
+                </th>
+                <th>
+                    Created
+                </th>
+                <th>
+                    Used
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in shares_preview %}
+            <tr>
+                <td>{{ s.name }}</td>
+                <td>{{ s.code }}</td>
+                <td>{{ s.created_date }}</td>
+                <td>{{ s.used }} / {{ s.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% if games_preview %}
+<div class="column row">
+    <h1>Games ({{ games_preview.paginator.count }}) <small><a href="games/">View all</a></small></h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Owner
+                </th>
+                <th>
+                    Player
+                </th>
+                <th>
+                    Start
+                </th>
+                <th>
+                    Completed
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for g in games_preview %}
+            <tr>
+                <td>{{ g.owner.email }}</td>
+                <td>{{ g.player.email }}</td>
+                <td>{{ g.created_date }}</td>
+                <td>{{ g.completed }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="Edit account details">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" action="." enctype="multipart/form-data">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit account details</h4>
+                </div>
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="user_name">Name</label>
+                        <input type="text" class="form-control" id="user_name" name="name" placeholder="Name" value="{{ account.name }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ account.email }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="bonus_games_count">General pool of games</label>
+                        <input type="number" class="form-control" id="bonus_games_count" name="bonus_games_count" placeholder="0" value="{{ account.get_bonus_games_count }}">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="email_confirmed" {% if account.email_confirmed %}checked{% endif %}> Confirmed email
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="enforce_limits" {% if account.enforce_limits %}checked{% endif %}> Enforce share code limits
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="group_code_override" {% if account.group_code_override %}checked{% endif %}> Enable group codes (manual override)
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="admin_report_override" {% if account.admin_report_override %}checked{% endif %}> Enable admin reports (manual override)
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="report_branding" {% if account.report_branding %}checked{% endif %}> Enable report branding
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="site_branding" {% if account.site_branding %}checked{% endif %}> Enable site branding
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="player_pays" {% if account.player_pays %}checked{% endif %}> Enable "player pays" mode on all shares on this account
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="anonymous_games" {% if account.anonymous_games %}checked{% endif %}> Enable anonymous client account creation
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="show_next_steps" {% if account.show_next_steps %}checked{% endif %}> Show Next Steps
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="extra_languages" {% if account.extra_languages %}checked{% endif %}> Extra languages
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Change report end PDF</label>
+                        <input type="file" name="report_end">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="delete_report_end"> Delete report end
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="hide_player_reports" {% if account.hide_player_reports %}checked{% endif %}> Hide user reports from players for all shares on this account
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_name">Hidden user report alternate message</label>
+                        <input type="text" class="form-control" id="player_report_alt_message" name="player_report_alt_message" placeholder="Message if user reports are hidden" value="{{ account.player_report_alt_message }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

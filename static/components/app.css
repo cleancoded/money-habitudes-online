@@ -1,0 +1,12 @@
+.signup-login-txt-col-content .section-heading {
+    padding-top: 103px;
+}
+
+.game-screen {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+a.status-view-details{font-size:14px; font-weight:500; text-transform:uppercase; background:None; background-size:30px auto; padding:6px 0 6px 5px; display:inline-block; white-space:nowrap} 

@@ -1,0 +1,108 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div class="column row">
+    <h1>Share information <small><a href data-toggle="modal" data-target="#detailModal">edit</a></small></h1>
+    <table style="border:none; border-collapse:separate;border-spacing:10px 0;">
+        <tr>
+            <td>Name</td>
+            <td>{{ share.name }}</td>
+        </tr>
+        <tr>
+            <td>Code</td>
+            <td>{{ share.code }}</td>
+        </tr>
+        <tr>
+            <td>Owner</td>
+            <td><a href="/admin/accounts/{{share.owner.id}}/">{{ share.owner.name }} &lt;{{ share.owner.email }}&gt;</a></td>
+        <tr>
+            <td>Type</td>
+            <td>{% if share.individual %}Individual{% else %}Group{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Usage</td>
+            <td>
+                {{ share.used }}
+                /
+                {{ share.total }}
+            </td>
+        <tr>
+            <td>Anonymous accounts</td>
+            <td>{{ share.anonymous }}</td>
+        </tr>
+        <tr>
+            <td>Enforce referrer URLs</td>
+            <td>{{ share.enforce_referrer }}</td>
+        </tr>
+        {% if account.enforce_referrer %}
+        <tr>
+            <td colspan="2">Referrer URLs</td>
+        </tr>
+        <tr>
+            <td colspan="2"><pre>{{ share.get_referrer_list }}</pre></td>
+        </tr>
+        {% endif %}
+    </table>
+</div>
+{% if games_preview %}
+<div class="column row">
+    <h1>Games ({{ games_preview.paginator.count }}) <small><a href="games/">View all</a></small></h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Owner
+                </th>
+                <th>
+                    Player
+                </th>
+                <th>
+                    Start
+                </th>
+                <th>
+                    Completed
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for g in games_preview %}
+            <tr>
+                <td>{{ g.owner.email }}</td>
+                <td>{{ g.player.email }}</td>
+                <td>{{ g.created_date }}</td>
+                <td>{{ g.completed }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="Edit account details">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" action=".">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit share details</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="user_name">Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Name" value="{{ share.name }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="user_name">Code</label>
+                        <input type="text" class="form-control" name="code" placeholder="Code" value="{{ share.code }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

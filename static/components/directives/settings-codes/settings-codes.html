@@ -1,0 +1,44 @@
+<br>
+<div ng-show="me.available_games" class="top-section text-center"><span class="xs-spacer"></span><a ng-click="open_create_code_modal();" class="btn">{{ t.web.d.settings_codes.create_code_button }}</a></div>
+<div class="tbl-rounded-shadow-wrap">
+    <div class="tbl-heading-dgrey">
+        <div class="row">
+            <div class="col-sm-8 col-xs-5 text-col">{{ t.web.d.settings_codes.code_table_title }}</div>
+            <div class="col-sm-4 col-xs-7">
+                <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                        <input ng-model="filter_by" ng-change="filter_change()" type="text" class="form-control" placeholder="{{ t.web.d.settings_codes.search_placeholder }}" />
+                        <span class="input-group-btn">
+                            <button class="btn" type="submit" style="padding-top:10px;"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-rounded dataTable tbl-dashboard">
+            <thead class="heading">
+                <tr class="bg-lgrey">
+                    <th width="20%" ng-click="get_shares('created_date')" ng-class="{'sorting_asc': order_by === 'created_date', 'sorting_desc': order_by === '-created_date', 'sorting': !str.includes('created_date')}"><span>{{ t.web.d.settings_codes.date_h }}</span></th>
+                    <th ng-click="get_shares('name');" ng-class="{'sorting_asc': order_by === 'name', 'sorting_desc': order_by === '-name', 'sorting': !str.includes('name')}"><span>{{ t.web.d.settings_codes.email_h }}</span></th>
+                    <th width="20%" ng-click="get_shares('code');" ng-class="{'sorting_asc': order_by === 'code', 'sorting_desc': order_by === '-code', 'sorting': !str.includes('code')}"><span>{{ t.web.d.settings_codes.code_h }}</span></th>
+                    <th width="15%" ng-click="get_shares('used');" ng-class="{'sorting_asc': order_by === 'used', 'sorting_desc': order_by === '-used', 'sorting': !str.includes('used')}"><span>{{ t.web.d.settings_codes.used_h }}</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="share in shares.results" ng-click="open_share_detail_modal(share)">
+                    <td>{{ share.created_date | date }}</td>
+                    <td>{{ share.name }}</td>
+                    <td>{{ share.code }}</td>
+                    <td>{{ share.used }}/{{ share.total }}</td>
+                    <td><a href class="green">{{ t.web.d.settings_codes.view_details }}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="pagination-holder">
+    <mh-pager data="shares" page="current_page"></mh-pager>
+</div>

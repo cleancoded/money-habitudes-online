@@ -1,0 +1,205 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div class="column row">
+    <h1>Accounts</h1>
+</div>
+<div class="column row">
+    <p><a class="btn btn-primary" href data-toggle="modal" data-target="#createModal">Create account</a></p>
+</div>
+<div class="column row">
+    <div class="well">
+        <p><strong>Filter</strong></p>
+        <form class="form" method="get" action="?page=1&order_by={{ order_by }}">
+            <div class="form-group">
+                <input type="text" class="form-control" name="q" value="{{ search_text }}">
+            </div>
+            <div class="form-group form-inline">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name ="show_admin_accounts_only" value="True", {% if show_admin_accounts_only %}checked{% endif %}> Only show admin accounts
+                    </label>
+                </div>
+                &nbsp;&nbsp;
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name ="show_test_accounts" value="True", {% if show_test_accounts %}checked{% endif %}> Show test accounts
+                    </label>
+                </div>
+                &nbsp;&nbsp;
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="show_anonymous_accounts" value="True" {% if show_anonymous_accounts %}checked{% endif %}> Show anonymous accounts
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+        </form>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    {% if order_by == 'email' %}
+                    <a href="?order_by=-email&q={{ search_text }}&show_anonymous_accounts={{show_anonymous_accounts}}&show_test_accounts={{show_test_accounts}}&show_admin_accounts_only={{show_admin_accounts_only}}">
+                    {% else %}
+                        <a href="?order_by=email&q={{ search_text }}&show_anonymous_accounts={{show_anonymous_accounts}}&show_test_accounts={{show_test_accounts}}&show_admin_accounts_only={{show_admin_accounts_only}}">
+                    {% endif %}
+                        {% if order_by == 'email' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+                        {% elif order_by == '-email' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+                        {% endif %}
+                        Email
+                    </a>
+                </th>
+                <th>
+                    {% if order_by == 'name' %}
+                    <a href="?order_by=-name&q={{ search_text }}&show_anonymous_accounts={{show_anonymous_accounts}}&show_test_accounts={{show_test_accounts}}&show_admin_accounts_only={{show_admin_accounts_only}}"">
+                    {% else %}
+                        <a href="?order_by=name&q={{ search_text }}&show_anonymous_accounts={{show_anonymous_accounts}}&show_test_accounts={{show_test_accounts}}&show_admin_accounts_only={{show_admin_accounts_only}}"">
+                    {% endif %}
+                        {% if order_by == 'name' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+                        {% elif order_by == '-name' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+                        {% endif %}
+                        Name
+                    </a>
+                <th>
+                    {% if order_by == 'created_date' %}
+                    <a href="?order_by=-created_date&q={{ search_text }}&show_anonymous_accounts={{show_anonymous_accounts}}&show_test_accounts={{show_test_accounts}}&show_admin_accounts_only={{show_admin_accounts_only}}"">
+                        {% else %}
+                        <a href="?order_by=created_date&q={{ search_text }}&show_anonymous_accounts={{show_anonymous_accounts}}&show_test_accounts={{show_test_accounts}}&show_admin_accounts_only={{show_admin_accounts_only}}"">
+                        {% endif %}
+                        {% if order_by == 'created_date' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+                        {% elif order_by == '-created_date' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+                        {% endif %}
+                        Created
+                    </a>
+                </th>
+                <th>Account type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for account in page.object_list %}
+            <tr onclick="window.location.assign('/admin/accounts/{{account.id}}/')">
+                <td>{{ account.email }}</td>
+                <td>{{ account.name }}</td>
+                <td>{{ account.created_date }}</td>
+                <td>{% if account.admin %}Admin{% else %}Player{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation"><center>
+        <ul class="pagination">
+            {% if page.has_previous %}
+            <li>
+                <a href="?page=1&order_by={{ order_by }}&q={{ search_text }}&show_anonymous_accounts={{show_anonymous_accounts}}&show_test_accounts={{show_test_accounts}}&show_admin_accounts_only={{show_admin_accounts_only}}" aria-label="First">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li>
+                <a href="?page={{ page.previous_page_number }}&order_by={{ order_by }}&q={{ search_text }}&show_anonymous_accounts={{show_anonymous_accounts}}&show_test_accounts={{show_test_accounts}}&show_admin_accounts_only={{show_admin_accounts_only}}" aria-label="Previous">
+                    <span aria-hidden="true"><</span>
+                </a>
+            </li>
+            {% endif %}
+            <li><a>{{ page.number }} / {{ page.paginator.num_pages }}</a></li>
+            {% if page.has_next %}
+            <li>
+                <a href="?page={{ page.next_page_number }}&order_by={{ order_by }}&q={{ search_text }}&show_anonymous_accounts={{show_anonymous_accounts}}&show_test_accounts={{show_test_accounts}}&show_admin_accounts_only={{show_admin_accounts_only}}" aria-label="Next">
+                    <span aria-hidden="true">></span>
+                </a>
+            </li>
+            <li>
+                <a href="?page={{ page.paginator.num_pages }}&order_by={{ order_by }}&q={{ search_text }}&show_anonymous_accounts={{show_anonymous_accounts}}&show_test_accounts={{show_test_accounts}}&show_admin_accounts_only={{show_admin_accounts_only}}" aria-label="Last">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    </center>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="Create account">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" action=".">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Create account</h4>
+                </div>
+                <div class="modal-body">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="user_name">Name</label>
+                        <input type="text" class="form-control" id="user_name" name="name" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="bonus_games_count">Bonus games</label>
+                        <input type="number" class="form-control" id="bonus_games_count" name="bonus_games_count" placeholder="0" value="0">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="email_confirmed"> Confirmed email
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="enforce_limits" checked> Enforce share code limits
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="group_code_override"> Enable group codes (manual override)
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="admin_report_override"> Enable admin reports (manual override)
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="report_branding"> Enable report branding
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="site_branding"> Enable site branding
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="player_pays"> Enable "player pays" mode on all shares on this account
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="hide_player_reports"> Hide user reports from players for all shares on this account
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_name">Hidden user report alternate message</label>
+                        <input type="text" class="form-control" id="player_report_alt_message" name="player_report_alt_message" placeholder="Message if user reports are hidden">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

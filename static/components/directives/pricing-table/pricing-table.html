@@ -1,0 +1,216 @@
+<div id="content">
+<div class="container">
+<div class="text-center">
+    <h2 class="section-heading">{{ t.web.d.pricing.title }}</h2>
+    <h4 class="section-subheading">{{ t.web.d.pricing.subtitle }}</h4>
+    </div>
+    <div class="tbl-features fulltbl wow zoomIn" data-wow-duration="1.5s" data-wow-delay="0s">
+        <div class="row"><center>
+            <div class="btn-group" ng-init="duration = 'monthly'; yStyle={'background-color': 'grey'}">
+                <label ng-style="mStyle" class=btn btn-primary" ng-model="duration" uib-btn-radio="'monthly'" ng-change="mStyle={}; yStyle={'background-color': 'grey'}">{{ t.web.d.pricing.monthly }}</label>
+                <label ng-style="yStyle" class=btn btn-primary" ng-model="duration" uib-btn-radio="'yearly'" ng-change="mStyle={'background-color': 'grey'}; yStyle={}">{{ t.web.d.pricing.yearly }}</label>
+            </div>
+        </center></div>
+        <br><br>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="col-md-3 no-padd hidden-xs hidden-sm">
+            <div class="feature-column">
+              <div style="margin-top:94px;" class="heading mar-top">{{ t.web.d.pricing.key_features }}</div>
+              <div>
+                <div class="item" data-mh="row1">{{ t.web.d.pricing.best_for }}</div>
+                <div class="item" data-mh="row2"><span style="display:inline;" ng-show="duration==='monthly'">{{ t.web.d.pricing.uses_per_month }}</span><span style="display:inline;" ng-show="duration==='yearly'">{{ t.web.d.pricing.uses_per_year }}</span>&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.uses_tooltip }}"><i class="fa fa-question-circle"></i></a>:</div>
+                <div class="item" data-mh="row3">
+                    <p>{{ t.web.d.pricing.codes }}</p>
+                </div>
+                <div class="item" data-mh="row4">
+                    <p>{{ t.web.d.pricing.group_codes }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.group_codes_tooltip }}"><i class="fa fa-question-circle"></i></a></p>
+                </div>
+                <div class="item" data-mh="row5">
+                    <p>{{ t.web.d.pricing.proreport }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.proreport_tooltip }}" ><i class="fa fa-question-circle"></i></a></p>
+                </div>
+                <div class="item" data-mh="row6">
+                    <p>{{ t.web.d.pricing.app_branding_tooltip }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.app_branding_tooltip }}" ><i class="fa fa-question-circle"></i></a></p>
+                </div>
+                <div class="item" data-mh="row7">
+                    <p>{{ t.web.d.pricing.report_branding }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.report_branding_tooltip }}" ><i class="fa fa-question-circle"></i></a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9 col-sm-12 no-padd">
+            <div class="col-sm-3 no-padd">
+              <div class="stnpricelist">
+                <div class="heading">{{ t.web.d.pricing.single }}</div>
+                <div style="height: 88px;" class="stnprice">$15<span>{{ t.web.d.pricing.per_use }}</span></div>
+                <div>
+                  <div class="item" data-mh="row1">{{ t.web.d.pricing.individuals }}</div>
+                  <div class="item" data-mh="row2"><span>{{ t.web.d.pricing.one_use }}</span></div>
+                  <div class="item" data-mh="row3">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.codes }}</p>
+                    </div>
+                    <img src="/static/design/images/cross-icon.png"></div>
+                  <div class="item" data-mh="row4">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.group_codes }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.group_codes_tooltip }}"><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <img src="/static/design/images/cross-icon.png"> </div>
+                  <div class="item" data-mh="row5">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.proreport }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.proreport_tooltip }}" ><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <img src="/static/design/images/cross-icon.png"> </div>
+                  <div class="item" data-mh="row6">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.app_branding }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.app_branding_tooltip }}" ><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <img src="/static/design/images/cross-icon.png"> </div>
+                  <div class="item" data-mh="row7">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.report_branding }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.report_branding_tooltip" ><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <img src="/static/design/images/cross-icon.png"> </div>
+                  <div class="item"><a ui-sref="subscription({option: 'individual'})" class="price-button">{{ t.web.d.pricing.signup }}</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 no-padd">
+              <div class="propricelist">
+                <div class="heading">{{ t.web.d.pricing.pro }}</div>
+                <div style="height: 88px;" ng-show="duration==='monthly'" class="proprice">$19<span>{{ t.web.d.pricing.per_month }}</span></div>
+                <div style="height: 88px;" ng-show="duration==='yearly'" class="proprice">$199<span>{{ t.web.d.pricing.per_year }}</span></div>
+                <div>
+                  <div class="item"  data-mh="row1">{{ t.web.d.pricing.pro_desc }}</div>
+                  <div class="item"  data-mh="row2">
+                      <span ng-show="duration === 'monthly'">5</span>
+                      <span ng-show="duration === 'yearly'">60</span>
+                  </div>
+                  <div class="item"  data-mh="row3">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.codes }}</p>
+                    </div>
+                    <img src="/static/design/images/right-icon.png"></div>
+                  <div class="item"  data-mh="row4">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.group_codes }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{t.web.d.pricing.group_codes_tooltip }}"><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <span ng-show="duration==='monthly'">$5/{{ t.web.d.pricing.month }}</span>
+                    <span ng-show="duration==='yearly'">$55/{{ t.web.d.pricing.year }}</span>
+                  </div>
+                  <div class="item" data-mh="row5">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.proreport }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.proreport_tooltip }}" ><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <span ng-show="duration==='monthly'">$5/{{ t.web.d.pricing.month }}</span>
+                    <span ng-show="duration==='yearly'">$55/{{ t.web.d.pricing.year }}</span>
+                  </div>
+                  <div class="item" data-mh="row6">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.app_branding }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.app_branding_tooltip }}" ><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <span>$149</span>
+                  </div>
+                  <div class="item" data-mh="row7">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.report_branding }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.report_branding_tooltip }}" ><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <span>$149</span>
+                  </div>
+                  <div class="item"><a ui-sref="subscription({option: 'professional', product: duration})" class="price-button">{{ t.web.d.pricing.signup }}</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 no-padd">
+              <div class="propluspricelist">
+                <div class="most-popularbox"><img src="/static/design/images/most-popular.png"></div>
+                <div class="columns-shadowlft"></div>
+                <div class="columns-shadowrgt"></div>
+                <div class="heading">{{ t.web.d.pricing.proplus }}</div>
+                <div style="height: 88px;" ng-show="duration==='monthly'" class="proplusprice">$49<span>{{ t.web.d.pricing.per_month }}</span></div>
+                <div style="height: 88px;" ng-show="duration==='yearly'" class="proplusprice">$499<span>{{ t.web.d.pricing.per_year }}</span></div>
+                <div>
+                  <div class="item"  data-mh="row1">{{ t.web.d.pricing.proplus_desc }}</div>
+                  <div class="item"  data-mh="row2">
+                      <span ng-show="duration==='monthly'">25</span>
+                      <span ng-show="duration==='yearly'">300</span>
+                  </div>
+                  <div class="item"  data-mh="row3">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.codes }}</p>
+                    </div>
+                    <img src="/static/design/images/right-icon.png"></div>
+                  <div class="item"  data-mh="row4">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.group_codes }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{t.web.d.pricing.group_codes_tooltip }}"><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <img src="/static/design/images/right-icon.png">
+                  </div>
+                  <div class="item"  data-mh="row5">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.proreport }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.proreport_tooltip }}" ><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <span ng-show="duration==='monthly'">$5/{{ t.web.d.pricing.month }}</span>
+                    <span ng-show="duration==='yearly'">$55/{{ t.web.d.pricing.year }}</span>
+                  </div>
+                  <div class="item" data-mh="row6">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                      <p>{{ t.web.d.pricing.app_branding }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.app_branding_tooltip }}" ><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <span>$149</span></div>
+                  <div class="item" data-mh="row7">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.report_branding }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.report_branding_tooltip }}" ><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <span>$149</span></div>
+                  <div class="item"><a ui-sref="subscription({option: 'proplus', product: duration})" class="price-button">{{ t.web.d.pricing.signup }}</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 no-padd">
+              <div class="premiumpricelist">
+                <div class="heading">{{ t.web.d.pricing.prem }}</div>
+                <div style="height: 88px;" ng-show="duration==='monthly'" class="premiumprice">$99<span>{{ t.web.d.pricing.per_month }}</span></div>
+                <div style="height: 88px;" ng-show="duration==='yearly'" class="premiumprice">$999<span>{{ t.web.d.pricing.per_year }}</span></div>
+                <div>
+                  <div class="item"  data-mh="row1">{{ t.web.d.pricing.prem_desc }}</div>
+                  <div class="item"  data-mh="row2">
+                      <span ng-show="duration==='monthly'">100</span>
+                      <span ng-show="duration==='yearly'">1200</span>
+                  </div>
+                  <div class="item"  data-mh="row3">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.codes }}</p>
+                    </div>
+                    <img src="/static/design/images/right-icon.png"></div>
+                  <div class="item"  data-mh="row4">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.group_codes }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{t.web.d.pricing.group_codes_tooltip }}"><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <img src="/static/design/images/right-icon.png"></div>
+                  <div class="item"  data-mh="row5">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.proreport }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.proreport_tooltip }}" ><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <img src="/static/design/images/right-icon.png"></div>
+                  <div class="item" data-mh="row6">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                      <p>{{ t.web.d.pricing.app_branding }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.app_branding_tooltip }}" ><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <span>$149</span></div>
+                  <div class="item" data-mh="row7">
+                    <div class="lbl-hdn hidden-md hidden-lg">
+                        <p>{{ t.web.d.pricing.report_branding }}&nbsp;<a clas="question-icon" tooltip-trigger="'mouseenter outsideClick'" uib-tooltip="{{ t.web.d.pricing.report_branding_tooltip }}" ><i class="fa fa-question-circle"></i></a></p>
+                    </div>
+                    <span>$149</span>
+                  </div>
+                  <div class="item"><a ui-sref="subscription({option: 'premium', product: duration})" class="price-button">{{ t.web.d.pricing.signup }}</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

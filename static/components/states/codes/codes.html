@@ -1,0 +1,79 @@
+<mh-base>
+<div id="content" class="bg-lblue-pattern">
+<div class="container">
+    <div ng-show="share.available" class="form-box-wrap">
+      <div ng-hide="share.claimed" class="form-box">
+        <div class="heading">{{ t.web.s.codes.h }}</div>
+        <div class="content">
+            <form ng-if="share && !share.anonymous && !share.player_pays" ng-submit="claim_share()">
+                <p class="msg">{{ 'web.s.codes.confirm.email' | format:me.email }}</p>
+                <div class="form-group"> <button type="submit" class="btn btn-block"><i class="fa fa-play fa-lft"></i>{{ t.web.s.codes.start }}</button> </div>
+                <div ng-show="me.logged_in" class="form-group"><a href ng-click="change_account()" class="btn-border btn-block"><i class="fa fa-power-off fa-lft"></i>{{ t.web.s.codes.change }}</a></div>
+            </form>
+            <form ng-if="share && share.anonymous" ng-submit="claim_share(name)">
+                <p class="msg">{{ t.web.s.codes.confirm.anonymous }}</p>
+                <div class="form-group" ng-init="name=''">
+                    <label style="color: black;">{{ t.web.s.codes.anonymous.name }}</label>
+                    <input ng-model="name" type="text" class="form-control" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <label style="color:black;">{{ t.web.d.settings_general.language }}</label>
+                    <select class="form-control" ng-model="language" ng-change="change_language(language)">
+                        <option ng-repeat="l in me.language_choices" value="{{ l[0] }}">{{ l[1] }}</option>
+                    </select>
+                  </div>
+                <div class="form-group"> <button type="submit" class="btn btn-block"><i class="fa fa-play fa-lft"></i>{{ t.web.s.codes.start }}</button> </div>
+            </form>
+            <form ng-if="share && !share.anonymous && share.player_pays && !payment_processing">
+                <div ng-if="STRIPE_PUBLISHABLE_KEY && !subscription.manual" id="content">
+                    <p class="msg">{{ t.web.s.codes.confirm.pay }}</p>
+                    <center><button
+                            class="btn"
+                            stripe-checkout="do_checkout"
+                            data-key="{{ STRIPE_PUBLISHABLE_KEY }}"
+                            data-name="Enter your payment details"
+                            data-description="Pay today: $5.00"
+                            data-amount="$5.00"
+                            data-zip-code=true
+                            data-billing-address=true
+                            data-email="{{ me.email }}"
+                            data-allow-remember-me="false">
+                        {{ t.web.s.codes.pay.proceed }}
+                        <i class="fa fa-angle-right fa-rgt"></i>
+                    </button></center>
+                </div>
+            </form>
+            <form ng-if="share && !share.anonymous && share.player_pays && payment_processing">
+                <p class="msg">{{ t.web.s.codes.pay.processing }} &nbsp;<mh-loading></mh-loading></p>
+            </form>
+        </div>
+      </div>
+    </div>
+    <div ng-show="share.claimed" class="form-box-wrap">
+        <div ng-show="share.claimed" class="form-box">
+            <div class="heading">{{ t.web.s.codes.h }}</div>
+            <div class="content">
+                <p class="msg">{{ t.web.s.codes.continue.h }}</p>
+                <div class="form-group"> <a ui-sref="games({game_id: share.game_id})" class="btn btn-block"><i class="fa fa-play fa-lft"></i>{{ t.web.s.codes.continue.b }}</a> </div>
+                <div class="form-group"><a ui-sref="logout" class="btn-border btn-block"><i class="fa fa-power-off fa-lft"></i>{{ t.web.s.codes.change }}</a></div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide="share.available || share.claimed" class="form-box-wrap">
+        <div class="form-box">
+            <div class="heading">{{ t.web.s.codes.na.h }}</div>
+            <div class="content">
+                <p class="msg">{{ t.web.s.codes.na.p }}</p>
+                <div class="form-group"><a ui-sref="start" class="btn-border btn-block"><i class="fa fa-arrow-left fa-lft"></i>{{ t.web.s.codes.na.back }}</a></div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="share.branding" class="branding-area after-login">
+        <div class="pic" ng-show="share.branding.cover_image_url"><img ng-src="{{ share.branding.cover_image_url }}" class="img-responsive"></div>
+        <div class="txt">
+            <span ng-repeat="line in share.branding.cover_text">{{ line }}<br></span>
+        </div>
+    </div>
+</div>
+</div>
+</mh-base>

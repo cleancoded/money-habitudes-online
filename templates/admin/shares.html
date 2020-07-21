@@ -1,0 +1,120 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+<div class="column row">
+    <h1>{% if account %}{{ account.name }}'s {% endif %}Shares</h1>
+</div>
+<div class="column row">
+    <form class="form-inline" method="get" action="?page=1&order_by={{ order_by }}">
+        <div class="form-group">
+            <input type="text" class="form-control" name="q" value="{{ search_text }}">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+    </form>
+    </form>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    {% if order_by == 'owner' %}
+                    <a href="?order_by=-owner&q={{ search_text }}">
+                    {% else %}
+                    <a href="?order_by=owner&q={{ search_text }}">
+                    {% endif %}
+                        {% if order_by == 'owner' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+                        {% elif order_by == '-owner' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+                        {% endif %}
+                        Owner
+                    </a>
+                </th>
+                <th>
+                    {% if order_by == 'name' %}
+                    <a href="?order_by=-name&q={{ search_text }}">
+                        {% else %}
+                        <a href="?order_by=name&q={{ search_text }}">
+                            {% endif %}
+                            {% if order_by == 'name' %}
+                            <span class="glyphicon glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+                            {% elif order_by == '-name' %}
+                            <span class="glyphicon glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+                            {% endif %}
+                            Name
+                        </a>
+                </th>
+                <th>
+                    {% if order_by == 'code' %}
+                    <a href="?order_by=-code&q={{ search_text }}">
+                    {% else %}
+                    <a href="?order_by=code&q={{ search_text }}">
+                    {% endif %}
+                        {% if order_by == 'code' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+                        {% elif order_by == '-code' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+                        {% endif %}
+                        Code
+                    </a>
+                </th>
+                <th>
+                    {% if order_by == 'created_date' %}
+                    <a href="?order_by=-created_date&q={{ search_text }}">
+                        {% else %}
+                    <a href="?order_by=created_date&q={{ search_text }}">
+                        {% endif %}
+                        {% if order_by == 'created_date' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+                        {% elif order_by == '-created_date' %}
+                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+                        {% endif %}
+                        Created
+                    </a>
+                </th>
+                <th>Used</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for share in page.object_list %}
+            <tr onclick="window.location.assign('/admin/shares/{{ share.id }}/')">
+                <td>{{ share.owner.email }}</td>
+                <td>{{ share.name }}</td>
+                <td>{{ share.code }}</td>
+                <td>{{ share.created_date }}</td>
+                <td>{{ share.used }} / {{ share.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation"><center>
+        <ul class="pagination">
+            {% if page.has_previous %}
+            <li>
+                <a href="?page=1&order_by={{ order_by }}&q={{ search_text }}" aria-label="First">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li>
+                <a href="?page={{ page.previous_page_number }}&order_by={{ order_by }}&q={{ search_text }}" aria-label="Previous">
+                    <span aria-hidden="true"><</span>
+                </a>
+            </li>
+            {% endif %}
+            <li><a>{{ page.number }} / {{ page.paginator.num_pages }}</a></li>
+            {% if page.has_next %}
+            <li>
+                <a href="?page={{ page.next_page_number }}&order_by={{ order_by }}&q={{ search_text }}" aria-label="Next">
+                    <span aria-hidden="true">></span>
+                </a>
+            </li>
+            <li>
+                <a href="?page={{ page.paginator.num_pages }}&order_by={{ order_by }}&q={{ search_text }}" aria-label="Last">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    </center>
+</div>
+{% endblock %}

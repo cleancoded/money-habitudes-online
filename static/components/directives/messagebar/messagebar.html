@@ -1,0 +1,1 @@
+<div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" close="closeAlert(alert.id)" style="margin-bottom: 0;">{{alert.message}}</div>

@@ -1,0 +1,26 @@
+Dear {{ data.player.name }},
+
+Congrats – you successfully sorted all of the statements in Money Habitudes Online and should have received your money personality report by now.
+
+However, just to be sure you’ve seen it, you can view that report here with this link:
+{{ data.report_url }}
+
+What if I don’t see the report?
+
+If you don’t see the report, it’s likely because you need to have a “PDF reader” to view it. Most computers have one installed. If yours doesn’t, install one (there are many free ones including Adobe Acrobat Reader), restart your browser, and then click on the link again.
+
+How do I save the report?
+
+You’ll save the report file from within the PDF reader in which it opens (typically in your browser window). Choose to save or download the file and then remember where you saved it.
+
+Can I send this report to someone else?
+
+You can do this two ways. First, you can send that direct link to someone. Second, you can download your report and then attach the file to an email and send it.
+
+What should I do now?
+
+If you haven’t already read your report, start there. Focus on the questions for the Money Habitudes categories where you have the most cards – as well as the “next steps” tips for making change. Also, going over your report – be it with a friend, family member or a professional – often generates really important and productive conversations about how you see and use money. These talks often lead to real insights about your life, finances and your interactions with the people around you.
+
+Sincerely,
+
+The Money Habitudes Team

@@ -1,0 +1,5 @@
+Welcome to Money Habitudes!
+
+Click the link below to confirm your email address.
+
+{{data.confirm_url}}

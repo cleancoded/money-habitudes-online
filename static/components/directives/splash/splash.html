@@ -1,0 +1,256 @@
+<div id="content" class="has-section">
+  <section class="bg-lgrey">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 wow zoomIn" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10">
+          <div class="comment-box">
+            <p>"Simple but extraordinarily insightful game"</p>
+            <div class="logo"><img src="/static/design/images/logo-washington-post.jpg"></div>
+            <div class="commnt-arrow"><img src="/static/design/images/txtarea-arrow.png"></div>
+          </div>
+        </div>
+        <div class="col-sm-4 wow zoomIn" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10">
+          <div class="comment-box">
+            <p>"An entertaining yet informative financial planning tool"</p>
+            <div class="logo"><img src="/static/design/images/logo-horsesmouth.jpg"></div>
+            <div class="commnt-arrow"><img src="/static/design/images/txtarea-arrow.png"></div>
+          </div>
+        </div>
+        <div class="col-sm-4 wow zoomIn" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10">
+          <div class="comment-box">
+            <p>"A game-like set of cards which helps start conversations about money"</p>
+            <div class="logo"><img src="/static/design/images/logo-forbes.jpg"></div>
+            <div class="commnt-arrow"><img src="/static/design/images/txtarea-arrow.png"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-purple">
+    <div class="container">
+      <div class="row">
+        <div class="disp-tbl">
+          <div class="col-sm-6 disp-tbl-cell wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10">
+            <div class="txt-col-lft">
+                <h2 class="section-heading">{{ t.web.d.splash.pro.h }}</h2>
+                <ul class="white-arrow">
+                    <li>{{ t.web.d.splash.pro.l1 }}</li>
+                    <li>{{ t.web.d.splash.pro.l2 }}</li>
+                </ul>
+                <a ng-click="scrollTo('#contact-wrap');" data-scroll class="btn" style="margin-top:20px">{{ t.web.d.splash.request_trial }}</a> </div>
+          </div>
+          <div class="col-sm-6 disp-tbl-cell wow slideInRight" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10"><img src="/static/design/images/dashboard-pic.png" class="img-responsive"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-lgrey-pattern text-center">
+    <div class="container">
+        <h2 class="section-heading">{{ t.web.d.splash.immediate.title }}</h2>
+        <div class="section-subheading">{{ t.web.d.splash.immediate.sub }}</div>
+        <div class="wow zoomIn" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10"><img src="/static/design/images/pie-chart.png" class="img-responsive"></div>
+    </div>
+  </section>
+  <section class="bg-lgreen">
+    <div class="container">
+      <div class="row">
+        <div class="disp-tbl">
+          <div class="col-sm-6 disp-tbl-cell wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10">
+            <div class="device-pic"><img src="/static/design/images/device-pic.png" class="img-responsive"></div>
+          </div>
+          <div class="col-sm-6 disp-tbl-cell wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10">
+            <div class="txt-col-rgt">
+                <h2 class="section-heading">{{ t.web.d.splash.device.title }}</h2>
+                <p>{{ t.web.d.splash.device.sub }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-lgrey text-center" id="pricing">
+    <div class="container">
+        <h2 class="section-heading">{{ t.web.d.splash.trust.title }}</h2>
+        <h4 class="section-subheading">{{ t.web.d.splash.trust.sub }}</h4>
+        <div class="row"><center>
+            <div class="btn-group" ng-init="duration = 'monthly'; yStyle={'background-color': 'grey'}">
+                <label ng-style="mStyle" class=btn btn-primary" ng-model="duration" uib-btn-radio="'monthly'" ng-change="mStyle={}; yStyle={'background-color': 'grey'}">{{ t.web.d.splash.table.monthly }}</label>
+                <label ng-style="yStyle" class=btn btn-primary" ng-model="duration" uib-btn-radio="'yearly'" ng-change="mStyle={'background-color': 'grey'}; yStyle={}">{{ t.web.d.splash.table.yearly }}</label>
+            </div>
+        </center></div>
+      <div class="tbl-features">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="col-md-3 no-padd hidden-xs hidden-sm wow zoomIn" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10">
+              <div class="feature-column">
+                <div class="columns-shadow"></div>
+                <div class="heading" style="margin-top: 6px;">{{ t.web.d.splash.table.features }}</div>
+                <div>
+                    <div class="item" data-mh="row1">{{ t.web.d.splash.table.types }}</div>
+                    <div class="item" data-mh="row2">{{ t.web.d.splash.table.number }}</div>
+                    <div class="item" data-mh="row3">{{ t.web.d.splash.table.addon }} *</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-9 col-sm-12 no-padd">
+              <div class="col-sm-3 no-padd wow zoomIn" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10">
+                <div class="stnpricelist">
+                    <div class="heading">{{ t.web.d.splash.table.standard }}</div>
+                  <div>
+                      <div class="item" data-mh="row1">{{ t.web.d.splash.table.standard_desc }}</div>
+                      <div class="item" data-mh="row2"><span>{{ t.web.d.splash.table.standard_use }}</span></div>
+                    <div class="item" data-mh="row3">
+                        <div class="lbl-hdn hidden-md hidden-lg">{{ t.web.d.splash.table.addon }} *</div>
+                      <img src="/static/design/images/cross-icon.png"></div>
+                      <div class="item"><a ui-sref="pricing" class="learnmore-btn">{{ t.web.d.splash.table.learn_more }}</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 no-padd wow zoomIn" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10">
+                <div class="propricelist">
+                  <div class="heading">{{ t.web.d.splash.table.pro_title }}</div>
+                  <div>
+                      <div class="item"  data-mh="row1">{{ t.web.d.splash.table.pro_desc }}</div>
+                      <div class="item"  data-mh="row2"><span ng-show="duration==='monthly'">5 {{ t.web.d.splash.uses_per_month }}</span><span ng-show="duration==='yearly'">60 {{ t.web.d.splash.uses_per_year }}</span></div>
+                    <div class="item"  data-mh="row3">
+                        <div class="lbl-hdn hidden-md hidden-lg">{{ t.web.d.splash.table.addon }} *</div>
+                      <img src="/static/design/images/right-icon.png"></div>
+                      <div class="item"><a ui-sref="pricing" class="learnmore-btn">{{ t.web.d.splash.table.learn_more }}</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="propluspricelist-holder col-sm-3 no-padd wow zoomIn" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10">
+                <div class="propluspricelist">
+                  <div class="most-popularbox"><img src="/static/design/images/most-popular.png"></div>
+                  <div class="columns-shadowlft"></div>
+                  <div class="columns-shadowrgt"></div>
+                  <div class="heading">{{ t.web.d.splash.plus_title }}</div>
+                  <div>
+                      <div class="item"  data-mh="row1">{{ t.web.d.splash.plus_desc }}</div>
+                      <div class="item"  data-mh="row2"><span ng-show="duration==='monthly'">25 {{ t.web.d.splash.uses_per_month }}</span><span ng-show="duration==='yearly'">300 {{ t.web.d.splash.uses_per_year }}</span></div>
+                    <div class="item"  data-mh="row3">
+                        <div class="lbl-hdn hidden-md hidden-lg">{{ t.web.d.splash.table.addon }} *</div>
+                      <img src="/static/design/images/right-icon.png"></div>
+                      <div class="item"><a ui-sref="pricing" class="learnmore-btn">{{ t.web.d.splash.table.learn_more }}</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 no-padd wow zoomIn" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10">
+                <div class="premiumpricelist">
+                    <div class="heading">{{ t.web.d.splash.prem_title }}</div>
+                  <div>
+                      <div class="item"  data-mh="row1">{{ t.web.d.splash.prem_desc }}</div>
+                      <div class="item"  data-mh="row2"><span ng-show="duration==='monthly'">100 {{ t.web.d.splash.uses_per_month }}</span><span ng-show="duration==='yearly'">1200 {{ t.web.d.splash.uses_per_year }}</span></div>
+                    <div class="item"  data-mh="row3">
+                        <div class="lbl-hdn hidden-md hidden-lg">{{ t.web.d.splash.table.addon }} *</div>
+                      <img src="/static/design/images/right-icon.png"></div>
+                      <div class="item"><a ui-sref="pricing" class="learnmore-btn">{{ t.web.d.splash.table.learn_more }}</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-12 addon-wrap">
+          <div class="heading wow zoomIn" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10">* {{ t.web.d.splash.table.addon }}</div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="addon-box wow zoomIn" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10"> <img src="/static/design/images/addon-icon1.png">
+                <p>{{ t.web.d.splash.addon_branding }}</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="addon-box wow zoomIn" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10"> <img src="/static/img/addon-icon-doc.png">
+                <p>{{ t.web.d.splash.addon_pro }}</p>
+            </div>
+          </div>
+          <div class="col-md-4 wow zoomIn" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="10">
+            <div class="addon-box"> <img src="/static/design/images/addon-icon3.png">
+                <p>{{ t.web.d.splash.addon.group }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-lblue-pattern"  id="contact-wrap">
+    <div class="container">
+      <div class="text-center">
+          <h2 class="section-heading">{{ t.web.d.splash.questions.title }}</h2>
+          <div class="section-subheading">{{ t.web.d.splash.questions.sub }}</div>
+        <div class="in-contnum"><a href="tel:4063618012"><img src="/static/design/images/phn-icon1.png">(406) 361-8012</a></div>
+      </div>
+      <div class="frm-contact">
+        <form ng-hide="working || sent" ng-submit="send_feedback(name, email, message, trial, org_name, phone);">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><img src="/static/design/images/user-icon.png"></div>
+                  <input ng-model="name" type="text" class="form-control" id="exampleInputAmount" placeholder="{{ t.web.d.splash.questions.name }}" required>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon"><img src="/static/design/images/email-icon1.png"></div>
+                  <input ng-model="email" type="email" class="form-control" id="exampleInputAmount" placeholder="{{ t.web.d.splash.questions.email }}" required>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="req-demo-acc">
+            <div class="row">
+                <div class="col-sm-12">
+                    <label>
+                        <input ng-model="trial" type="checkbox" id="check_demo">
+                        <strong>{{ t.web.d.splash.questions.sample }}</strong></label>
+                </div>
+            </div>
+          </div>
+          <div class="form-group" ng-show="trial">
+              <div class="row">
+                  <div class="col-sm-12">
+                      <div class="form-group">
+                          <div class="input-group">
+                              <label>
+                                  <strong>{{ t.web.d.splash.questions.org_name }}</strong>
+                                  <input style="border-radius:6px;" pattern=".{2,}" title="{{ t.web.d.splash.questions.org_title }}" ng-required="trial" type="text" class="form-control" ng-model="org_name">
+                              </label>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="input-group">
+                  <label>
+                      <strong>{{ t.web.d.splash.questions.phone }}</strong>
+                      <input style="border-radius:6px;" ng-required="trial" type="tel" class="form-control" ng-model="phone">
+                  </label>
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="input-group" style="margin-bottom:0">
+                  <div class="input-group-addon txtarea"><img src="/static/design/images/wrt-msg-icon.png"></div>
+                  <textarea ng-model="message" class="form-control" placeholder="{{ t.web.d.splash.questions.message }}" rows="10" ng-required="!trial"></textarea>
+              </div>
+              <div class="txtarea-arrow"><img src="/static/design/images/txtarea-arrow.png"></div>
+          </div>
+          <div class="text-center">
+              <div ng-show="form_errror" class="alert alert-danger" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">{{ t.web.d.splash.questions.error }}</span>
+                  {{ t.web.d.splash.questions.error_detail }}
+              </div>
+              <input type="submit" class="btn" value="Submit">
+          </div>
+        </form>
+      </div>
+      <div ng-show="sent" class="alert alert-success" role="alert">
+          <span class="sr-only">{{ t.web.d.splash.questions.success }}</span>
+          {{ t.web.d.splash.questions.success_detail }}
+      </div>
+    </div>
+  </section>
+</div>
