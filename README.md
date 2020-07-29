@@ -24,7 +24,7 @@ $ bin/init_db.sh
 
 ## Settings
 
-Rename `moneyhabitudes/settings-example.py` to `moneyhabitudes/settings.py`. It is recommnded to specify the commented out variables at the bottom of the file.
+Copy `moneyhabitudes/settings-example.py` to `moneyhabitudes/settings.py`. It is recommnded to specify the variables at the bottom of the file.
 
 ## Starting the debug environment
 

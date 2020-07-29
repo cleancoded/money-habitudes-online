@@ -4,7 +4,7 @@ import random
 import stripe
 
 from accounts.models import Account, Share
-from cards.models import Cardset
+from cards.cardset import Cardset
 from orders.models import Subscription
 from games.models import Game
 
@@ -14,11 +14,12 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class Person:
     def __init__(self, email=None):
-        if email:
+        if email and Account.objects.filter(email=email).exists():
             self.obj = Account.objects.get(email=email)
         else:
             name = get_person_name()
-            email = '{}@example.com'.format(name.lower().replace(' ', '.'))
+            if not email:
+                email = '{}@example.com'.format(name.lower().replace(' ', '.'))
             password = 'test'
             while Account.objects.filter(email=email).count() > 0:
                 name = get_person_name()
@@ -71,12 +72,11 @@ class Person:
         subscription.refresh_subscription(True)
 
     def play(self, share):
-        game = Game.start_game(share, self.obj)
+        game = Game.start_game(Cardset.get_cardset('adult'), share, self.obj)
 
-        cards = game.cardset.cards.all()
-
-        for card in cards:
-            game.answer(card, random.choice([-1, 0, 1]))
+        while not game.completed:
+            game.answer(random.choice([-1, 0, 1]))
+            game.finalize()
 
         game.date = timezone.now() - timezone.timedelta(days=random.randrange(0, 365))
         game.save()
@@ -96,7 +96,6 @@ def populate(email=None, players=100, available_games=100):
         clients.append(client)
 
     # Make shares and play games until all clients have played one game
-    cardset = Cardset.objects.first()
     while len(clients) > 0:
         group_max = 20
         if group_max > len(clients):
@@ -112,9 +111,9 @@ def populate(email=None, players=100, available_games=100):
             users.append(clients.pop())
 
         if (group_size == 1):
-            share = admin.obj.create_share(cardset, group_size, users[0].obj.email)
+            share = admin.obj.create_share('adult', group_size, users[0].obj.email)
         else:
-            share = admin.obj.create_share(cardset, group_size, get_project_name())
+            share = admin.obj.create_share('adult', group_size, get_project_name())
 
         for user in users:
             user.play(share)
