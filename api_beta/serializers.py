@@ -68,9 +68,6 @@ class MeSerializer(serializers.Serializer):
                 response['subscription'] = SubscriptionSerializer(subscription).data
                 response['group_codes'] = subscription.group_codes or response['group_codes']
                 response['admin_reports'] = subscription.admin_reports or response['admin_reports']
-
-            if request.user.is_staff or request.user.account.extra_languages:
-                response['language_choices'].extend(LANGUAGE_DEBUG)
                 
         else:
             response['logged_in'] = False

@@ -10,6 +10,7 @@ app.config(function($stateProvider) {
             $scope.csrftoken = $cookies.get('csrftoken');
             $scope.order_url = api_root + 'subscriptions/';
             $scope.individual_url = api_root + 'orders/';
+            $scope.payment_option = 'stripe';
             if ($scope.me.subscription) {
                 s = $scope.me.subscription.plan_id.split('_');
                 $scope.product_select = s[1];
@@ -55,6 +56,7 @@ app.config(function($stateProvider) {
             });
 
             function searchAll(id) {
+                console.log("plan: ", id, $scope.plans)
                 for (i = 0; i < $scope.plans.length; ++i) {
                     if ($scope.plans[i].id === id) {
                         return $scope.plans[i];
@@ -167,6 +169,8 @@ app.config(function($stateProvider) {
                     }
                 }
                 $scope.plan = searchAll($scope.order_string);
+                console.log("core_plan: ", $scope.core_plan)
+                console.log("plan: ", $scope.plan)
 
                 $scope.branding_total_int = 0;
                 if ($scope.me.subscription && $scope.me.subscription.active) {
@@ -355,10 +359,26 @@ app.config(function($stateProvider) {
                 );
             };
 
+            $scope.change_payment = function(paymentType) {
+                $scope.payment_option = paymentType
+            };
+
+            $scope.click_checkout = function() {
+                if ($scope.payment_option == "stripe") {
+                    let element = document.getElementById("stripe_checkout_btn");
+                    element.dispatchEvent(new Event("click"));
+                } else {
+                    let element = document.getElementById("paypal_checkout_btn");
+                    element.dispatchEvent(new Event("click"));
+                }
+            };
+
             if ($stateParams.unsubscribe) {
                 $scope.open_cancel_modal();
                 $state.go('.', {unsubscribe: false});
             }
+
+            // paypal.Buttons().render('#paypal-button-container');
         }
     });
 });

@@ -5,7 +5,8 @@ var app = angular.module('MoneyHabitudesApp', [
     'ui.grid',
     'chart.js',
     'ngCookies',
-    'stripe.checkout'
+    'stripe.checkout',
+    'paypal-checkout'
 ]);
 
 var api_root = '/api/beta/';

@@ -501,3 +501,13 @@ class Share(models.Model):
     def store_referrer_list(self, list):
         self.referrer_urls = json.dumps(list)
         self.save()
+
+    def total_games_available(self):
+        if self.player_pays:
+            return 10000
+
+        total = 0
+        for available in self.available_games.all():
+            total += available.count
+
+        return total

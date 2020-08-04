@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-xs-8 no-paddright">
           <div uib-dropdown class="dropdown show">
-            <p><a uib-dropdown-toggle class="dropdown-toggle" href aria-haspopup="true" aria-expanded="false">{{ language_name }}<b class="caret"></b></a></p>
+            <p><a uib-dropdown-toggle class="dropdown-toggle" href aria-haspopup="true" aria-expanded="false">{{ get_language_name() }}<b class="caret"></b></a></p>
               <ul uib-dropdown-menu class="dropdown-menu">
                 <li ng-repeat="language in me.language_choices"><a href ng-click="change_language(language[0]);">{{ language[1] }}</a></li>
               </ul>
@@ -44,7 +44,7 @@
             </div>
             <div class="header-box">
               <div uib-dropdown class="dropdown show">
-                <p><a uib-dropdown-toggle class="dropdown-toggle" href aria-haspopup="true" aria-expanded="false">{{ language_name }}<b class="caret"></b></a></p>
+                <p><a uib-dropdown-toggle class="dropdown-toggle" href aria-haspopup="true" aria-expanded="false">{{ get_language_name() }}<b class="caret"></b></a></p>
                   <ul uib-dropdown-menu class="dropdown-menu">
                     <li ng-repeat="language in me.language_choices"><a href ng-click="change_language(language[0]);">{{ language[1] }}</a></li>
                   </ul>
@@ -66,14 +66,22 @@
       <div class="row">
         <div class="col-sm-3 col-xs-5"><a ui-sref="dashboard" class="logo"><img src="/static/design/images/logo.png"></a></div>
         <div class="col-sm-9 col-xs-7">
-          <div uib-dropdown class="username dropdown show">
-            <a uib-dropdown-toggle class="dropdown-toggle" href aria-haspopup="true" aria-expanded="false">{{ me.name }}<b class="caret"></b></a>
-              <ul uib-dropdown-menu class="dropdown-menu">
-                <li><a ui-sref="dashboard"><i class="fa fa-dashboard fa-lft"></i>{{ t.web.d.navbar.dashboard }}</a></li>
-                <li><a ui-sref="settings"><i class="fa fa-cog fa-lft"></i>{{ t.web.d.navbar.settings }}</a></li>
-                <li><a ui-sref="subscription"><i class="fa fa-check-square-o fa-lft"></i>{{ t.web.d.navbar.subscription }}</a></li>
-                <li><a ui-sref="logout"><i class="fa fa-power-off fa-lft"></i>{{ t.web.d.navbar.logout }}</a></li>
-              </ul>
+          <div class="nav-info">
+            <div uib-dropdown class="language dropdown show">
+              <p class="language-label"><a uib-dropdown-toggle class="dropdown-toggle" href aria-haspopup="true" aria-expanded="false">{{ get_language_name() }}<b class="caret"></b></a></p>
+                <ul uib-dropdown-menu class="dropdown-menu">
+                  <li ng-repeat="language in me.language_choices"><a href ng-click="change_language(language[0]);">{{ language[1] }}</a></li>
+                </ul>
+            </div>
+            <div uib-dropdown class="username dropdown show">
+              <a uib-dropdown-toggle class="dropdown-toggle" href aria-haspopup="true" aria-expanded="false">{{ me.name }}<b class="caret"></b></a>
+                <ul uib-dropdown-menu class="dropdown-menu">
+                  <li><a ui-sref="dashboard"><i class="fa fa-dashboard fa-lft"></i>{{ t.web.d.navbar.dashboard }}</a></li>
+                  <li><a ui-sref="settings"><i class="fa fa-cog fa-lft"></i>{{ t.web.d.navbar.settings }}</a></li>
+                  <li><a ui-sref="subscription"><i class="fa fa-check-square-o fa-lft"></i>{{ t.web.d.navbar.subscription }}</a></li>
+                  <li><a ui-sref="logout"><i class="fa fa-power-off fa-lft"></i>{{ t.web.d.navbar.logout }}</a></li>
+                </ul>
+            </div>
           </div>
         </div>
       </div>

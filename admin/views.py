@@ -7,6 +7,7 @@ from django.shortcuts import render
 import markdown
 import os
 import stripe
+import xlwt
 
 from accounts.models import Account, Share
 from games.models import Game
@@ -255,6 +256,23 @@ def report_list(request):
     return render(request, 'admin/report_list.html')
 
 @staff_member_required
+def report_game_usage(request):
+    accounts = Account.objects.filter(user__is_active=True)
+    page_number = request.GET.get('page', 1)
+    search_text = request.GET.get('q', '')
+    order_by = request.GET.get('order_by', 'email')
+    if search_text:
+        accounts = accounts.filter(Q(email__icontains=search_text) |
+                                   Q(name__icontains=search_text) |
+                                   Q(stripe_customer_id__icontains=search_text))
+    accounts = accounts.order_by(order_by)
+    return render(request, 'admin/reports/game_usage.html', {
+        'page': Paginator(accounts, 50).page(page_number),
+        'search_text': search_text,
+        'order_by': order_by,
+    })
+
+@staff_member_required
 def report_admin_usage(request):
     accounts = Account.objects.filter(admin=True)
     page_number = request.GET.get('page', 1)
@@ -270,3 +288,40 @@ def report_admin_usage(request):
         'search_text': search_text,
         'order_by': order_by,
     })
+
+
+@staff_member_required
+def export_game_list(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="games.xls"'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Users')
+
+    # Sheet header, first row
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['Owner', 'Player', 'Started', 'Completed' ]
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    # Sheet body, remaining rows
+    font_style = xlwt.XFStyle()
+
+    rows = Game.objects.all()
+    for game in rows:
+        row_num += 1
+        complete_status = 'True' if game.completed else "False"
+        started = game.created_date.strftime("%b %d, %Y, %H:%m %p")
+
+        ws.write(row_num, 0, game.owner.email, font_style)
+        ws.write(row_num, 1, game.player.email, font_style)
+        ws.write(row_num, 2, started, font_style)
+        ws.write(row_num, 3, complete_status, font_style)
+
+    wb.save(response)
+    return response

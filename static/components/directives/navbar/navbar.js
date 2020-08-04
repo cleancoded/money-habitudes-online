@@ -20,11 +20,10 @@ app.directive('mhNavbar', [function() {
                 }, 800);
             };
 
-
             $scope.change_language = function(language) {
                 LanguageService.change_language(language).then(
                     function(success) {
-                        get_language_name();
+                        $scope.language_name = get_language_name();
                         return;
                     },
                     function(error) {
@@ -33,15 +32,17 @@ app.directive('mhNavbar', [function() {
                 );
             };
 
-            function get_language_name() {
+            $scope.get_language_name = function() {
+                var language = null;
                 for (i = 0; i < $scope.me.language_choices.length; ++i) {
                     if ($scope.me.language_choices[i][0] == $scope.me.language) {
-                        $scope.language_name = $scope.me.language_choices[i][1];
-                        return;
+                        language = $scope.me.language_choices[i][1]
+                        break;
                     }
                 }
+
+                return language == null ? 'English' : language
             }
-            get_language_name();
         }
     };
 }]);

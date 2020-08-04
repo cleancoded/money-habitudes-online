@@ -2,72 +2,61 @@
 
 {% block content %}
 <div class="column row">
-    <h1>{% if account %}{{ account.name }}'s {% endif %}Games</h1>
+    <h1>Accounts</h1>
 </div>
 <div class="column row">
-    <form class="form-inline" method="get" action="?page=1&order_by={{ order_by }}">
-        <div class="form-group">
-            <input type="text" class="form-control" name="q" value="{{ search_text }}">
-        </div>
-        <button type="submit" class="btn btn-default">Search</button>
-        <a href="{% url 'admin:export_games' %}" class="btn btn-default pull-right">Export</a>
-    </form>
-    </form>
+    <div class="well">
+        <p><strong>Filter</strong></p>
+        <form class="form" method="get" action="?page=1&order_by={{ order_by }}">
+            <div class="form-group">
+                <input type="text" class="form-control" name="q" value="{{ search_text }}">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+        </form>
+    </div>
     <table class="table table-hover">
         <thead>
             <tr>
                 <th>
-                    {% if order_by == 'owner' %}
-                    <a href="?order_by=-owner&q={{ search_text }}">
+                    {% if order_by == 'email' %}
+                    <a href="?order_by=-email&q={{ search_text }}">
                     {% else %}
-                    <a href="?order_by=owner&q={{ search_text }}">
+                    <a href="?order_by=email&q={{ search_text }}">
                     {% endif %}
-                        {% if order_by == 'owner' %}
+                        {% if order_by == 'email' %}
                         <span class="glyphicon glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
-                        {% elif order_by == '-owner' %}
+                        {% elif order_by == '-email' %}
                         <span class="glyphicon glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
                         {% endif %}
-                        Owner
+                        Email
                     </a>
                 </th>
                 <th>
-                    {% if order_by == 'player_email' %}
-                    <a href="?order_by=-player_email&q={{ search_text }}">
+                    {% if order_by == 'name' %}
+                    <a href="?order_by=-name&q={{ search_text }}">
                     {% else %}
-                    <a href="?order_by=player_email&q={{ search_text }}">
+                    <a href="?order_by=name&q={{ search_text }}">
                     {% endif %}
-                        {% if order_by == 'player_email' %}
+                        {% if order_by == 'name' %}
                         <span class="glyphicon glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
-                        {% elif order_by == '-player_email' %}
+                        {% elif order_by == '-name' %}
                         <span class="glyphicon glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
                         {% endif %}
-                        Player
+                        Name
                     </a>
-                <th>
-                    {% if order_by == 'created_date' %}
-                    <a href="?order_by=-created_date&q={{ search_text }}">
-                        {% else %}
-                    <a href="?order_by=created_date&q={{ search_text }}">
-                        {% endif %}
-                        {% if order_by == 'created_date' %}
-                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
-                        {% elif order_by == '-created_date' %}
-                        <span class="glyphicon glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
-                        {% endif %}
-                        Start
-                    </a>
-                </th>
-                <th>Completed</th>
+                <th>Used games</th>
+                <th>Available games</th>
+                <th>Group codes</th>
             </tr>
         </thead>
         <tbody>
-            {% for game in page.object_list %}
-            <!-- <tr onclick="window.location.assign('/admin/games/{{game.id}}/')">  -->
-            <tr>
-                <td>{{ game.owner.email }}</td>
-                <td>{{ game.player_email }}</td>
-                <td>{{ game.created_date }}</td>
-                <td>{{ game.completed }}</td>
+            {% for account in page.object_list %}
+            <tr onclick="window.location.assign('/admin/accounts/{{account.id}}/')">
+                <td>{{ account.email }}</td>
+                <td>{{ account.name }}</td>
+                <td>{{ account.usage_stats.0 }}</td>
+                <td>{{ account.total_games_available }}</td>
+                <td>{{ account.get_capabilities.group_codes|default_if_none:'' }}</td>
             </tr>
             {% endfor %}
         </tbody>

@@ -42,10 +42,26 @@
           <div class="col-md-3 col-sm-6">
             <div class="subscription-planbox subscription-premium">
               <div class="radiobox">
-                <input ng-model="option_select" value="premium" ng-change="calc_price(void, 'premium');" name="rb-plantype" type="radio"/>
+                <input ng-model="payment_option" value="premium" ng-change="calc_price('premium');" name="rb-plantype" type="radio"/>
               </div>
               <div class="plan-name">{{ t.web.s.subscription.plan.premium.name }}</div>
               <div class="plan-desc">{{ t.web.s.subscription.plan.premium.description }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="row subscription-planwrap">
+          <div class="col-sm-6">
+            <div class="subscription-planbox subscription-stripe">
+              <div class="radiobox">
+                <input ng-model="payment_option" value="stripe" ng-change="change_payment('stripe');" name="rb-paymenttype" type="radio"/>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="subscription-planbox subscription-paypal">
+              <div class="radiobox">
+                <input ng-model="payment_option" value="paypal" ng-change="change_payment('paypal');" name="rb-paymenttype" type="radio"/>
+              </div>
             </div>
           </div>
         </div>
@@ -233,6 +249,12 @@
           </a>
           <button ng-show="!working && me.logged_in && (!me.subscription || !me.subscription.active)"
                   class="btn"
+                  ng-click="click_checkout();">
+              {{ t.web.s.subscription.proceed }}
+          </button>
+          <button ng-show="false"
+                  id="stripe_checkout_btn"
+                  class="btn"
                   stripe-checkout="do_checkout"
                   data-key="{{ STRIPE_PUBLISHABLE_KEY }}"
                   data-name="{{ plan.name }}"
@@ -245,6 +267,8 @@
               {{ t.web.s.subscription.proceed }}
               <i class="fa fa-angle-right fa-rgt"></i>
           </button>
+          <div id="paypal-button-container"></div>
+          <!-- <paypal-checkout data-amount="grand_total_int"></paypal-checkout> -->
           <a href ng-click="open_cancel_modal();" ng-show="me.logged_in && me.subscription && me.subscription.active" class="btn-border display-xs-block xs-margn-bot">
               <i class="fa fa-close fa-lft"></i>
               {{ t.web.s.subscription.cancel_subscription }}

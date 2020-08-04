@@ -81,6 +81,10 @@ header{box-shadow:rgba(24, 24, 20, .2) 0 1px 5px; z-index:5; position:relative; 
 .bottom-header{padding:8px 0}
 .bottom-header .logo img{max-width:100%;}
 
+.bottom-header .nav-info{display: flex;justify-content: flex-end;}
+.bottom-header .nav-info .language-label{line-height: 1em;}
+.bottom-header .nav-info .language.dropdown{margin: 20px 15px 0 0;}
+
 a.dropdown-toggle{display:inline-block; height:30px}
 a.dropdown-toggle .caret{margin-left:8px}
 .username.dropdown{float:right; list-style-type:none; margin:20px 0 0; font-size:15px; font-weight:500; color:#333}
@@ -463,6 +467,9 @@ a.status-view-details{font-size:14px; font-weight:500; text-transform:uppercase;
 .subscription-planbox.subscription-proplus{background:#ee0019}
 .subscription-planbox.subscription-premium{background:#a13a93}
 .subscription-planbox .most-popularbox{position: absolute; right: -30px; top: -40px; z-index: 5}
+
+.subscription-paypal{background: url('/static/design/images/paypal.png') no-repeat; background-size: contain;}
+.subscription-stripe{background: url('/static/design/images/stripe.jpeg') no-repeat; background-size: contain;}
 
 .tbl-subscription .fa-check{color:#5aba1a; margin-top:2px}
 .tbl-subscription .lbl-txt{padding-left:20px}

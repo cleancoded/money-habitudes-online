@@ -17,5 +17,7 @@ urlpatterns = [
     url(r'^products/$', views.product_list),
     url(r'^reports/$', views.report_list),
     url(r'^reports/admin_usage/$', views.report_admin_usage),
+    url(r'^reports/game_usage/$', views.report_game_usage),
     url(r'^login/$', views.login, name='login'),
+    url(r'^export_games/$', views.export_game_list, name="export_games"),
 ]
