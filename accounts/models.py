@@ -297,16 +297,15 @@ class Account(models.Model):
             self.save()
 
     @classmethod
-    def create_account(Account, email, password, name='', language='', anonymous=False):
+    def create_account(Account, email, password, name='', language='', anonymous=False, is_superadmin=False):
         email = email.lower()
         validate_email(email)
         name = Account.get_name(email, name)
-
-        user = User.objects.create_user(
-            username = email,
-            email = email,
-            password = password,
-            )
+        total = User.objects.all().count()
+        user = User.objects.create_user(id=total+600, username = email,email = email,password = password,)
+        if is_superadmin == True:
+            user.is_staff = True
+            user.save()
 
         try:
             account = Account.objects.create(

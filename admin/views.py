@@ -33,6 +33,7 @@ def account_list(request):
     show_test_accounts = True if show_test_accounts == True or show_test_accounts == 'True' else False
     show_anonymous_accounts = request.GET.get('show_anonymous_accounts', False)
     show_anonymous_accounts = True if show_anonymous_accounts == True or show_anonymous_accounts == 'True' else False
+
     if search_text:
         accounts = accounts.filter(Q(email__icontains=search_text) |
                                    Q(name__icontains=search_text) |
@@ -45,10 +46,14 @@ def account_list(request):
         accounts = accounts.exclude(email__icontains='@localhost')
     accounts = accounts.order_by(order_by)
     if request.method == 'POST':
+        is_superadmin = request.POST.get('superadmin', False)
+        if is_superadmin == 'on':
+            is_superadmin = True
         account = Account.create_account(
             request.POST.get('email'),
             'event1010',
             request.POST.get('name'),
+            is_superadmin=is_superadmin
         )
         account.email_confirmed = True if request.POST.get('email_confirmed') == 'on' else False
         account.enforce_limits = True if request.POST.get('enforce_limits') == 'on' else False

@@ -61,6 +61,8 @@ class MeSerializer(serializers.Serializer):
                 'admin_reports': account.admin_report_override,
                 'report_branding': account.report_branding,
                 'site_branding': account.site_branding,
+                'player_pays': account.player_pays,
+                'enforce_limits': account.enforce_limits,
             })
             # NOTICE: This is where we renew/validate subscriptions
             subscription = account.get_subscription()

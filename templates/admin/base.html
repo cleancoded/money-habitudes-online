@@ -1,6 +1,8 @@
 {% load static %}
 {% load compress %}
 
+{% load admin_tags %}
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -31,13 +33,16 @@
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
+                {% is_admin_report request.user as admin_report %}
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="{% if request.path == "/admin/accounts/" %}active{% endif %}"><a href="/admin/accounts/">Accounts</a></li>
                         <li class="{% if request.path == "/admin/shares/" %}active{% endif %}"><a href="/admin/shares/">Shares</a></li>
                         <li class="{% if request.path == "/admin/games/" %}active{% endif %}"><a href="/admin/games/">Games</a></li>
                         <li class="{% if request.path == "/admin/cardsets/" %}active{% endif %}"><a href="/admin/cardsets/">Cardsets</a></li>
+                        {% if admin_report == 1 %}
                         <li class="{% if request.path == "/admin/reports/" %}active{% endif %}"><a href="/admin/reports/">Reports</a></li>
+                        {% endif %}
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div>

@@ -990,6 +990,7 @@ web.d.settings_codes.group_label,Nombre del evento (opcional),Event name (option
 web.d.settings_codes.group_size,Número de usos,Number of uses,,,
 web.d.settings_codes.group_success,Código de grupo creado,Group code created.,,,
 web.d.settings_codes.group_title,Crea un código de grupo,Create a group code,,,
+web.d.settings_codes.not_allowed,No se le permite utilizar este servicio.,You are not allowed to use this service.,,,
 web.d.settings_codes.none_available,No tienes juegos disponibles para usar,You don't have any games available to use.,,,
 web.d.settings_codes.not_available,No tienes suficientes juegos disponibles,You don't have enough games available.,,,
 web.d.settings_codes.search_placeholder,Busca,Search,,,
